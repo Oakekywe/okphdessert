@@ -724,14 +724,14 @@ const showDoctor = (sender_psid) => {
                 },               
               ],
           },{
-            "title": "Kenneth Martinez",
-            "subtitle": "General Surgeon",
-            "image_url":"https://image.freepik.com/free-vector/doctor-icon-avatar-white_136162-58.jpg",                       
+            "title": "Sanwin Makin",
+            "subtitle": "Dessert",
+            "image_url":"https://i.pinimg.com/originals/be/57/2a/be572a9298292d0f009b288c1827749e.jpg",                       
             "buttons": [
                 {
                   "type": "postback",
-                  "title": "Kenneth Martinez",
-                  "payload": "Doctor:Kenneth Martinez",
+                  "title": "Sanwin Makin",
+                  "payload": "Doctor:Sanwin Makin",
                 },               
               ],
           },{
