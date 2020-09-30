@@ -1001,7 +1001,7 @@ function testDelete(sender_psid){
 }
 
 const defaultReply = (sender_psid) => {
-  let response0 = {"button": "ABV"};
+  let response0 = {"button": buttonReply};
   let response1 = {"text": "If you wanna appointment, type 'hospital'"};
   let response2 = {"text": "To test text reply, type 'text'"};
   let response3 = {"text": "To test quick reply, type 'quick'"};
