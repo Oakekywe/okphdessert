@@ -891,8 +891,8 @@ const start = (sender_psid) => {
   });
 }
 
-
-/*const showDoctor = (sender_psid) => {
+/*
+const showDoctor = (sender_psid) => {
     let response = {
       "attachment": {
         "type": "template",
