@@ -499,7 +499,10 @@ const handleMessage = (sender_psid, received_message) => {
         break;
       case "hospital":
           hospitalAppointment(sender_psid);
-        break;                
+        break;  
+      case "start":
+          order(sender_psid);
+        break;              
       case "text":
         textReply(sender_psid);
         break;
@@ -858,6 +861,188 @@ end hospital
 **************/
 
 
+/**************
+start order
+**************/
+const start = (sender_psid) => {
+   let response1 = {"text": "Welcome to our DTN dessert shop, you can order our menu. You can make donation with us. You can be a loyal member. "};
+   let response2 = {
+    "text": "Please choose what you wanna do",
+    "quick_replies":[
+            {
+              "content_type":"text",
+              "title":"Order",
+              "payload":"department:General Surgery",              
+            },{
+              "content_type":"text",
+              "title":"Donate",
+              "payload":"department:ENT",             
+            },{
+              "content_type":"text",
+              "title":"Loyalty Reward",
+              "payload":"department:Dermatology", 
+            }
+
+    ]
+  };
+
+  callSend(sender_psid, response1).then(()=>{
+    return callSend(sender_psid, response2);
+  });
+}
+
+
+const showDoctor = (sender_psid) => {
+    let response = {
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "generic",
+          "elements": [{
+            "title": "James Smith",
+            "subtitle": "General Surgeon",
+            "image_url":"https://image.freepik.com/free-vector/doctor-icon-avatar-white_136162-58.jpg",                       
+            "buttons": [
+                {
+                  "type": "postback",
+                  "title": "James Smith",
+                  "payload": "Doctor:James Smith",
+                },               
+              ],
+          },{
+            "title": "Sanwin Makin",
+            "subtitle": "Dessert",
+            "image_url":"https://i.pinimg.com/originals/be/57/2a/be572a9298292d0f009b288c1827749e.jpg",                       
+            "buttons": [
+                {
+                  "type": "postback",
+                  "title": "Sanwin Makin",
+                  "payload": "Doctor:Sanwin Makin",
+                },               
+              ],
+          },{
+            "title": "Barbara Young",
+            "subtitle": "General Surgeon",
+            "image_url":"https://cdn.iconscout.com/icon/free/png-512/doctor-567-1118047.png",                       
+            "buttons": [
+                {
+                  "type": "postback",
+                  "title": "Barbara Young",
+                  "payload": "Doctor:Barbara Young",
+                },               
+              ],
+          }
+
+          ]
+        }
+      }
+    }
+
+  
+  callSend(sender_psid, response);
+
+}
+
+const firstOrFollowUp = (sender_psid) => {
+
+  let response = {
+    "text": "First Time Visit or Follow Up",
+    "quick_replies":[
+            {
+              "content_type":"text",
+              "title":"First Time",
+              "payload":"visit:first time",              
+            },{
+              "content_type":"text",
+              "title":"Follow Up",
+              "payload":"visit:follow up",             
+            }
+    ]
+  };
+  callSend(sender_psid, response);
+
+}
+
+const botQuestions = (current_question, sender_psid) => {
+  if(current_question == 'q1'){
+    let response = {"text": bot_questions.q1};
+    callSend(sender_psid, response);
+  }else if(current_question == 'q2'){
+    let response = {"text": bot_questions.q2};
+    callSend(sender_psid, response);
+  }else if(current_question == 'q3'){
+    let response = {"text": bot_questions.q3};
+    callSend(sender_psid, response);
+  }else if(current_question == 'q4'){
+    let response = {"text": bot_questions.q4};
+    callSend(sender_psid, response);
+  }else if(current_question == 'q5'){
+    let response = {"text": bot_questions.q5};
+    callSend(sender_psid, response);
+  }else if(current_question == 'q6'){
+    let response = {"text": bot_questions.q6};
+    callSend(sender_psid, response);
+  }else if(current_question == 'q7'){
+    let response = {"text": bot_questions.q7};
+    callSend(sender_psid, response);
+  }
+}
+
+const confirmAppointment = (sender_psid) => {
+  console.log('APPOINTMENT INFO', userInputs);
+  let summery = "department:" + userInputs[user_id].department + "\u000A";
+  summery += "doctor:" + userInputs[user_id].doctor + "\u000A";
+  summery += "visit:" + userInputs[user_id].visit + "\u000A";
+  summery += "date:" + userInputs[user_id].date + "\u000A";
+  summery += "time:" + userInputs[user_id].time + "\u000A";
+  summery += "name:" + userInputs[user_id].name + "\u000A";
+  summery += "gender:" + userInputs[user_id].gender + "\u000A";
+  summery += "phone:" + userInputs[user_id].phone + "\u000A";
+  summery += "email:" + userInputs[user_id].email + "\u000A";
+  summery += "message:" + userInputs[user_id].message + "\u000A";
+
+  let response1 = {"text": summery};
+
+  let response2 = {
+    "text": "Select your reply",
+    "quick_replies":[
+            {
+              "content_type":"text",
+              "title":"Confirm",
+              "payload":"confirm-appointment",              
+            },{
+              "content_type":"text",
+              "title":"Cancel",
+              "payload":"off",             
+            }
+    ]
+  };
+  
+  callSend(sender_psid, response1).then(()=>{
+    return callSend(sender_psid, response2);
+  });
+}
+
+const saveAppointment = (arg, sender_psid) => {
+  let data = arg;
+  data.ref = generateRandom(6);
+  data.status = "pending";
+  db.collection('appointments').add(data).then((success)=>{
+    console.log('SAVED', success);
+    let text = "Thank you. We have received your appointment."+ "\u000A";
+    text += " We wil call you to confirm soon"+ "\u000A";
+    text += "Your booking reference number is:" + data.ref;
+    let response = {"text": text};
+    callSend(sender_psid, response);
+  }).catch((err)=>{
+     console.log('Error', err);
+  });
+}
+
+/**************
+end order
+**************/
+
 
 
 const hiReply =(sender_psid) => {
@@ -1114,7 +1299,6 @@ const setupGetStartedButton = (res) => {
 /**********************************
 FUNCTION TO SET UP PERSISTENT MENU
 ***********************************/
-
 
 
 const setupPersistentMenu = (res) => {
