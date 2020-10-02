@@ -501,7 +501,7 @@ const handleMessage = (sender_psid, received_message) => {
           hospitalAppointment(sender_psid);
         break;  
       case "start":
-          order(sender_psid);
+          startReply(sender_psid);
         break;              
       case "text":
         textReply(sender_psid);
@@ -864,7 +864,7 @@ end hospital
 /**************
 start order
 **************/
-const start = (sender_psid) => {
+const startReply = (sender_psid) => {
    let response1 = {"text": "Welcome to our DTN dessert shop, you can order our menu. You can make donation with us. You can be a loyal member. "};
    let response2 = {
     "text": "Please choose what you wanna do",
