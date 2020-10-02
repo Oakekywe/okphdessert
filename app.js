@@ -892,7 +892,7 @@ const start = (sender_psid) => {
 }
 
 
-const showDoctor = (sender_psid) => {
+/*const showDoctor = (sender_psid) => {
     let response = {
       "attachment": {
         "type": "template",
@@ -1038,7 +1038,7 @@ const saveAppointment = (arg, sender_psid) => {
      console.log('Error', err);
   });
 }
-
+*/
 /**************
 end order
 **************/
