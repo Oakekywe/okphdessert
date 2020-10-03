@@ -1071,6 +1071,7 @@ const quantity = (sender_psid) => {
 
 }
 
+/*
 const botQuestions = (current_question, sender_psid) => {
   if(current_question == 'q1'){
     let response = {"text": bot_questions.q1};
