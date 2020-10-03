@@ -128,10 +128,6 @@ app.post('/webhook', (req, res) => {
 
 });
 
-app.get('/map',function(initMap,res){    
-    res.render('map.ejs');
-});
-
 app.use('/uploads', express.static('uploads'));
 
 
