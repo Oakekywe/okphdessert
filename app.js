@@ -416,7 +416,14 @@ function handleQuickReply(sender_psid, received_message) {
     let dept = received_message.slice(11);
     userInputs[user_id].department = dept;
     showDoctor(sender_psid);
-  }else{
+  }
+  else if(received_message.startsWith("pickordelivery:")){
+    let pickordelivery = received_message.slice(15);
+    userInputs[user_id].pickordelivery = pickordelivery;
+    current_question = 'q1';
+    botQuestions(current_question, sender_psid);
+  }  
+  else{
 
       switch(received_message) {                
         case "on":
@@ -427,7 +434,10 @@ function handleQuickReply(sender_psid, received_message) {
           break; 
         case "confirm-appointment":
               saveAppointment(userInputs[user_id], sender_psid);
-          break;              
+          break;
+        case "quantity:":
+            pickupordelivery(sender_psid);
+          break;                
         default:
             defaultReply(sender_psid);
     } 
@@ -1073,7 +1083,7 @@ const showPudding = (sender_psid) => {
 const quantity = (sender_psid) => {
 
   let response = {
-    "text": "Choose a quantity to order",
+    "text": "How many trays do you want to order?",
     "quick_replies":[
             {
               "content_type":"text",
@@ -1102,6 +1112,25 @@ const quantity = (sender_psid) => {
 
 }
 
+const pickupordelivery = (sender_psid) => {
+
+  let response = {
+    "text": "Do you want to pick up or delivery for your order?",
+    "quick_replies":[
+            {
+              "content_type":"text",
+              "title":"Pick up",
+              "payload":"pickordelivery:Pick Up",              
+            },{
+              "content_type":"text",
+              "title":"Delivery",
+              "payload":"pickordelivery:Delivery",             
+            }
+    ]
+  };
+  callSend(sender_psid, response);
+
+}
 /*
 const botQuestions = (current_question, sender_psid) => {
   if(current_question == 'q1'){
