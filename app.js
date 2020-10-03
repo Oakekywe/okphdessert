@@ -867,24 +867,50 @@ start order
 const startReply = (sender_psid) => {
    let response1 = {"text": "Welcome to our DTN dessert shop, you can order our menu. You can make donation with us. You can be a loyal member. "};
    let response2 = {
-    "text": "Please choose what you wanna do",
-    "quick_replies":[
-            {
-              "content_type":"text",
-              "title":"Order",
-              "payload":"department:General Surgery",              
-            },{
-              "content_type":"text",
-              "title":"Donate",
-              "payload":"department:ENT",             
-            },{
-              "content_type":"text",
-              "title":"Loyalty Reward",
-              "payload":"department:Dermatology", 
-            }
+         "attachment": {
+                "type": "template",
+                "payload": {
+                  "template_type": "generic",
+                  "elements": [{
+                    "title": "James Smith",
+                    "subtitle": "General Surgeon",
+                    "image_url":"https://image.freepik.com/free-vector/doctor-icon-avatar-white_136162-58.jpg",                       
+                    "buttons": [
+                        {
+                          "type": "postback",
+                          "title": "James Smith",
+                          "payload": "Doctor:James Smith",
+                        },               
+                      ],
+                  },{
+                    "title": "Jone",
+                    "subtitle": "abv",
+                    "image_url":"https://i.pinimg.com/originals/be/57/2a/be572a9298292d0f009b288c1827749e.jpg",                       
+                    "buttons": [
+                        {
+                          "type": "postback",
+                          "title": "Jone",
+                          "payload": "Doctor:Jone",
+                        },               
+                      ],
+                  },{
+                    "title": "Barbara Young",
+                    "subtitle": "General Surgeon",
+                    "image_url":"https://cdn.iconscout.com/icon/free/png-512/doctor-567-1118047.png",                       
+                    "buttons": [
+                        {
+                          "type": "postback",
+                          "title": "Barbara Young",
+                          "payload": "Doctor:Barbara Young",
+                        },               
+                      ],
+                  }
 
-    ]
-  };
+                  ]
+                }
+              }
+    
+ };
 
   callSend(sender_psid, response1).then(()=>{
     return callSend(sender_psid, response2);
