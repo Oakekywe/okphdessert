@@ -594,6 +594,13 @@ const handlePostback = (sender_psid, received_postback) => {
     console.log('TEST', userInputs);
     showDessert(sender_psid);
   }
+  else if(payload.startsWith("SanwinMakin:")){
+    let sanwinmakin_name = payload.slice(12);
+    console.log('SELECTED SANWIN MAKIN IS: ', sanwinmakin_name);
+    userInputs[user_id].SanwinMakin = sanwinmakin_name;
+    console.log('TEST', userInputs);
+    quantity(sender_psid);
+  }
   else{
 
       switch(payload) {  
@@ -971,32 +978,54 @@ const showOrder = (sender_psid) => {
 
 
 const showDessert = (sender_psid) => {
-    let response1 = {"text": "Here's our available menu now. You can check detail of dessert. "};
+    let response1 = {"text": "We have 4 types of Sanwin Makin. You can order as follow: "};
     let response2 = {
       "attachment": {
         "type": "template",
         "payload": {
           "template_type": "generic",
           "elements": [{
-            "title": "Sanwin Makin",
-            "subtitle": "Dessert",
-            "image_url":"https://cdn.kuali.com/wp-content/uploads/2017/10/Sanwin-Makin..jpg",                       
+            "title": "Shwe Kyi Sanwin Makin",
+            "subtitle": "This type of Sanwin Makin is made with Shwe Kyi and the original taste of Sanwin Makin.",
+            "image_url":"https://scontent.frgn5-2.fna.fbcdn.net/v/t31.0-0/p180x540/415606_4691000434420_355451047_o.jpg?_nc_cat=109&_nc_sid=2c4854&_nc_eui2=AeF2M9RhymkUvzblKIVEcaVYZZ9IqNQbMhlln0io1BsyGeUUZNECSYed1motoMAU3T3XXsplzubf4UwghXbirA2G&_nc_ohc=kx_5FjqU2noAX_FLDXz&_nc_ht=scontent.frgn5-2.fna&tp=6&oh=2dccc6bd79739ae9a566cae4baadf8eb&oe=5F9EDD53",                       
             "buttons": [
                 {
                   "type": "postback",
-                  "title": "Show more",
-                  "payload": "Dessert:Sanwin Makin",
+                  "title": "Order $7000",
+                  "payload": "SanwinMakin:Shwe Kyi Sanwin Makin",
                 },               
               ],
           },{
-            "title": "Pudding",
-            "subtitle": "Dessert",
-            "image_url":"https://i.pinimg.com/564x/75/47/d8/7547d8cca6bc0fd3a9840c72e0fe6acf.jpg",                       
+            "title": "Potato Sanwin Makin",
+            "subtitle": "This type of Sanwin Makin is made with Potato and its taste is cheesy.",
+            "image_url":"https://i.pinimg.com/originals/00/5f/cf/005fcf0186075132975c0667d4c0c005.jpg",                       
             "buttons": [
                 {
                   "type": "postback",
-                  "title": "Show more",
-                  "payload": "Dessert:Pudding",
+                  "title": "Order $6000",
+                  "payload": "SanwinMakin:Potato Sanwin Makin",
+                },               
+              ],
+          },{
+            "title": "Milk Sanwin Makin",
+            "subtitle": "This type of Sanwin Makin is made with Milk and its taste is sweet.",
+            "image_url":"https://burmaspice.com/wp-content/uploads/2018/08/Burma-Spice-South-East-Asian-Burmese-Recipe-Burmese-Semolina-Cake_web-res.jpg",                       
+            "buttons": [
+                {
+                  "type": "postback",
+                  "title": "Order $6000",
+                  "payload": "SanwinMakin:Milk Sanwin Makin",
+                },               
+              ],
+          },{
+            "title": "Banana Sanwin Makin",
+            "subtitle": "This type of Sanwin Makin is made with Banana and its taste is a little bit sour.",
+            "image_url":"https://scontent.frgn5-2.fna.fbcdn.net/v/t1.0-0/p526x296/102871159_948419118950746_478899810489249804_n.jpg?_nc_cat=102&_nc_sid=8bfeb9&_nc_eui2=AeFNEWd47jK_lkwdilqwV_h8WnacIXjhOhJadpwheOE6EsH59hBDO-Nk8-bL2cLd4G0G_Gbp47yqo93cdH9-0Na0&_nc_ohc=PzURL4fQxDQAX-9tx3p&_nc_ht=scontent.frgn5-2.fna&tp=6&oh=b736bed6a074bb67889f7f3db210d199&oe=5F9EA75E",                       
+            "buttons": [
+                {
+                  "type": "postback",
+                  "title": "Order $8000",
+                  "payload": "SanwinMakin:Banana Sanwin Makin",
                 },               
               ],
           }
@@ -1009,20 +1038,32 @@ const showDessert = (sender_psid) => {
         return callSend(sender_psid, response2);
       });
 }
-/*
-const firstOrFollowUp = (sender_psid) => {
+
+const quantity = (sender_psid) => {
 
   let response = {
-    "text": "First Time Visit or Follow Up",
+    "text": "Choose a quantity to order",
     "quick_replies":[
             {
               "content_type":"text",
-              "title":"First Time",
-              "payload":"visit:first time",              
+              "title":"1",
+              "payload":"quantity:1",              
             },{
               "content_type":"text",
-              "title":"Follow Up",
-              "payload":"visit:follow up",             
+              "title":"2",
+              "payload":"quantity:2",             
+            },{
+              "content_type":"text",
+              "title":"3",
+              "payload":"quantity:3",             
+            },{
+              "content_type":"text",
+              "title":"4",
+              "payload":"quantity:4",             
+            },{
+              "content_type":"text",
+              "title":"5",
+              "payload":"quantity:5",             
             }
     ]
   };
