@@ -587,13 +587,6 @@ const handlePostback = (sender_psid, received_postback) => {
     console.log('TEST', userInputs);
     firstOrFollowUp(sender_psid);
   }
-  else if(payload.startsWith("Dessert:")){
-    let dessert_name = payload.slice(8);
-    console.log('SELECTED DESSERT IS: ', dessert_name);
-    userInputs[user_id].Dessert = dessert_name;
-    console.log('TEST', userInputs);
-    showDessert(sender_psid);
-  }
   else if(payload.startsWith("SanwinMakin:")){
     let sanwinmakin_name = payload.slice(12);
     console.log('SELECTED SANWIN MAKIN IS: ', sanwinmakin_name);
@@ -604,6 +597,15 @@ const handlePostback = (sender_psid, received_postback) => {
   else{
 
       switch(payload) {  
+      case "sanwinMakin":
+          showSanwinmakin(sender_psid);
+        break;
+      case "pudding":
+          showPudding(sender_psid);
+        break;
+      case "orderPudding":
+          quantity(sender_psid);
+        break;  
       case "order":
           showOrder(sender_psid);
         break;      
@@ -951,7 +953,7 @@ const showOrder = (sender_psid) => {
                 {
                   "type": "postback",
                   "title": "Show more",
-                  "payload": "Dessert:Sanwin Makin",
+                  "payload": "sanwinMakin",
                 },               
               ],
           },{
@@ -962,7 +964,7 @@ const showOrder = (sender_psid) => {
                 {
                   "type": "postback",
                   "title": "Show more",
-                  "payload": "Dessert:Pudding",
+                  "payload": "pudding",
                 },               
               ],
           }
@@ -977,7 +979,7 @@ const showOrder = (sender_psid) => {
 }
 
 
-const showDessert = (sender_psid) => {
+const showSanwinmakin = (sender_psid) => {
     let response1 = {"text": "We have 4 types of Sanwin Makin. You can order as follow: "};
     let response2 = {
       "attachment": {
@@ -1026,6 +1028,35 @@ const showDessert = (sender_psid) => {
                   "type": "postback",
                   "title": "Order $8000",
                   "payload": "SanwinMakin:Banana Sanwin Makin",
+                },               
+              ],
+          }
+
+          ]
+        }
+      }
+    }
+     callSend(sender_psid, response1).then(()=>{
+        return callSend(sender_psid, response2);
+      });
+}
+
+const showPudding = (sender_psid) => {
+    let response1 = {"text": "Here is a baked pudding. "};
+    let response2 = {
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "generic",
+          "elements": [{
+            "title": "Pudding",
+            "subtitle": "This type of pudding is baked and it is soft and sweet.",
+            "image_url":"https://scontent.frgn5-2.fna.fbcdn.net/v/t31.0-0/p180x540/415606_4691000434420_355451047_o.jpg?_nc_cat=109&_nc_sid=2c4854&_nc_eui2=AeF2M9RhymkUvzblKIVEcaVYZZ9IqNQbMhlln0io1BsyGeUUZNECSYed1motoMAU3T3XXsplzubf4UwghXbirA2G&_nc_ohc=kx_5FjqU2noAX_FLDXz&_nc_ht=scontent.frgn5-2.fna&tp=6&oh=2dccc6bd79739ae9a566cae4baadf8eb&oe=5F9EDD53",                       
+            "buttons": [
+                {
+                  "type": "postback",
+                  "title": "Order $4000",
+                  "payload": "orderPudding",
                 },               
               ],
           }
