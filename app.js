@@ -588,6 +588,15 @@ const handlePostback = (sender_psid, received_postback) => {
     firstOrFollowUp(sender_psid);
   }
   else{
+    (payload.startsWith("Dessert:")){
+    let dessert_name = payload.slice(8);
+    console.log('SELECTED DESSERT IS: ', dessert_name);
+    userInputs[user_id].Dessert = dessert_name;
+    console.log('TEST', userInputs);
+    showDessert(sender_psid);
+  
+  }
+  else{
 
       switch(payload) {  
       case "order":
@@ -962,6 +971,46 @@ const showOrder = (sender_psid) => {
       });
 }
 
+
+const showDessert = (sender_psid) => {
+    let response1 = {"text": "Here's our available menu now. You can check detail of dessert. "};
+    let response2 = {
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "generic",
+          "elements": [{
+            "title": "Sanwin Makin",
+            "subtitle": "Dessert",
+            "image_url":"https://cdn.kuali.com/wp-content/uploads/2017/10/Sanwin-Makin..jpg",                       
+            "buttons": [
+                {
+                  "type": "postback",
+                  "title": "Show more",
+                  "payload": "Dessert:Sanwin Makin",
+                },               
+              ],
+          },{
+            "title": "Pudding",
+            "subtitle": "Dessert",
+            "image_url":"https://i.pinimg.com/564x/75/47/d8/7547d8cca6bc0fd3a9840c72e0fe6acf.jpg",                       
+            "buttons": [
+                {
+                  "type": "postback",
+                  "title": "Show more",
+                  "payload": "Dessert:Pudding",
+                },               
+              ],
+          }
+
+          ]
+        }
+      }
+    }
+     callSend(sender_psid, response1).then(()=>{
+        return callSend(sender_psid, response2);
+      });
+}
 /*
 const firstOrFollowUp = (sender_psid) => {
 
