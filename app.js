@@ -923,7 +923,8 @@ const startReply = (sender_psid) => {
 
 
 const showOrder = (sender_psid) => {
-    let response = {
+    let response1 = {"text": "Here's our available menu now. You can check detail of dessert. "};
+    let response2 = {
       "attachment": {
         "type": "template",
         "payload": {
@@ -931,22 +932,22 @@ const showOrder = (sender_psid) => {
           "elements": [{
             "title": "Sanwin Makin",
             "subtitle": "Dessert",
-            "image_url":"https://image.freepik.com/free-vector/doctor-icon-avatar-white_136162-58.jpg",                       
+            "image_url":"https://cdn.kuali.com/wp-content/uploads/2017/10/Sanwin-Makin..jpg",                       
             "buttons": [
                 {
                   "type": "postback",
-                  "title": "Show me",
+                  "title": "Show more",
                   "payload": "Dessert:Sanwin Makin",
                 },               
               ],
           },{
             "title": "Pudding",
             "subtitle": "Dessert",
-            "image_url":"https://i.pinimg.com/originals/be/57/2a/be572a9298292d0f009b288c1827749e.jpg",                       
+            "image_url":"https://i.pinimg.com/564x/75/47/d8/7547d8cca6bc0fd3a9840c72e0fe6acf.jpg",                       
             "buttons": [
                 {
                   "type": "postback",
-                  "title": "Show me",
+                  "title": "Show more",
                   "payload": "Dessert:Pudding",
                 },               
               ],
@@ -956,10 +957,9 @@ const showOrder = (sender_psid) => {
         }
       }
     }
-
-  
-  callSend(sender_psid, response);
-
+     callSend(sender_psid, response1).then(()=>{
+        return callSend(sender_psid, response2);
+      });
 }
 
 /*
