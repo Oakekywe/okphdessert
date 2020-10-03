@@ -917,44 +917,33 @@ const startReply = (sender_psid) => {
   });
 }
 
-/*
-const showDoctor = (sender_psid) => {
+
+const showOrder = (sender_psid) => {
     let response = {
       "attachment": {
         "type": "template",
         "payload": {
           "template_type": "generic",
           "elements": [{
-            "title": "James Smith",
-            "subtitle": "General Surgeon",
+            "title": "Sanwin Makin",
+            "subtitle": "Dessert",
             "image_url":"https://image.freepik.com/free-vector/doctor-icon-avatar-white_136162-58.jpg",                       
             "buttons": [
                 {
                   "type": "postback",
-                  "title": "James Smith",
-                  "payload": "Doctor:James Smith",
+                  "title": "Show me",
+                  "payload": "Dessert:Sanwin Makin",
                 },               
               ],
           },{
-            "title": "Sanwin Makin",
+            "title": "Pudding",
             "subtitle": "Dessert",
             "image_url":"https://i.pinimg.com/originals/be/57/2a/be572a9298292d0f009b288c1827749e.jpg",                       
             "buttons": [
                 {
                   "type": "postback",
-                  "title": "Sanwin Makin",
-                  "payload": "Doctor:Sanwin Makin",
-                },               
-              ],
-          },{
-            "title": "Barbara Young",
-            "subtitle": "General Surgeon",
-            "image_url":"https://cdn.iconscout.com/icon/free/png-512/doctor-567-1118047.png",                       
-            "buttons": [
-                {
-                  "type": "postback",
-                  "title": "Barbara Young",
-                  "payload": "Doctor:Barbara Young",
+                  "title": "Show me",
+                  "payload": "Dessert:Pudding",
                 },               
               ],
           }
@@ -969,6 +958,7 @@ const showDoctor = (sender_psid) => {
 
 }
 
+/*
 const firstOrFollowUp = (sender_psid) => {
 
   let response = {
