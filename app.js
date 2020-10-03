@@ -586,9 +586,21 @@ const handlePostback = (sender_psid, received_postback) => {
     userInputs[user_id].doctor = doctor_name;
     console.log('TEST', userInputs);
     firstOrFollowUp(sender_psid);
-  }else{
+  }else{ 
+    (payload.startsWith("Doctor:")){
+    let doctor_name = payload.slice(7);
+    console.log('SELECTED DOCTOR IS: ', doctor_name);
+    userInputs[user_id].doctor = doctor_name;
+    console.log('TEST', userInputs);
+    firstOrFollowUp(sender_psid);
 
-      switch(payload) {        
+  }
+  else{
+
+      switch(payload) {      
+      case "order":
+          showOrder(sender_psid);
+        break;  
       case "yes":
           showButtonReplyYes(sender_psid);
         break;
@@ -879,7 +891,7 @@ const startReply = (sender_psid) => {
                         {
                           "type": "postback",
                           "title": "Order Now",
-                          "payload": "Doctor:James Smith",
+                          "payload": "order",
                         },               
                       ],
                   },{
@@ -890,7 +902,7 @@ const startReply = (sender_psid) => {
                         {
                           "type": "postback",
                           "title": "Donate",
-                          "payload": "Doctor:Jone",
+                          "payload": "donate",
                         },               
                       ],
                   },{
@@ -901,7 +913,7 @@ const startReply = (sender_psid) => {
                         {
                           "type": "postback",
                           "title": "Loyalty",
-                          "payload": "Doctor:Barbara Young",
+                          "payload": "loyalty",
                         },               
                       ],
                   }
