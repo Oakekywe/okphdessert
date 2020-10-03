@@ -586,21 +586,13 @@ const handlePostback = (sender_psid, received_postback) => {
     userInputs[user_id].doctor = doctor_name;
     console.log('TEST', userInputs);
     firstOrFollowUp(sender_psid);
-  }else{ 
-    (payload.startsWith("Doctor:")){
-    let doctor_name = payload.slice(7);
-    console.log('SELECTED DOCTOR IS: ', doctor_name);
-    userInputs[user_id].doctor = doctor_name;
-    console.log('TEST', userInputs);
-    firstOrFollowUp(sender_psid);
-
   }
   else{
 
-      switch(payload) {      
+      switch(payload) {  
       case "order":
           showOrder(sender_psid);
-        break;  
+        break;      
       case "yes":
           showButtonReplyYes(sender_psid);
         break;
