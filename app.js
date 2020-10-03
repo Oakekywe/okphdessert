@@ -594,7 +594,7 @@ const handlePostback = (sender_psid, received_postback) => {
     userInputs[user_id].Dessert = dessert_name;
     console.log('TEST', userInputs);
     showDessert(sender_psid);
-  
+  }
   }
   else{
 
