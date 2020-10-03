@@ -587,14 +587,12 @@ const handlePostback = (sender_psid, received_postback) => {
     console.log('TEST', userInputs);
     firstOrFollowUp(sender_psid);
   }
-  else{
-    (payload.startsWith("Dessert:")){
+  else if(payload.startsWith("Dessert:")){
     let dessert_name = payload.slice(8);
     console.log('SELECTED DESSERT IS: ', dessert_name);
     userInputs[user_id].Dessert = dessert_name;
     console.log('TEST', userInputs);
     showDessert(sender_psid);
-  }
   }
   else{
 
