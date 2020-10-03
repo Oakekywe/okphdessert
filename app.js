@@ -1108,6 +1108,18 @@ const quantity = (sender_psid) => {
               "content_type":"text",
               "title":"5",
               "payload":"quantity:5",             
+            },{
+              "content_type":"text",
+              "title":"6",
+              "payload":"quantity:6",             
+            },{
+              "content_type":"text",
+              "title":"7",
+              "payload":"quantity:7",             
+            },{
+              "content_type":"text",
+              "title":"8",
+              "payload":"quantity:8",             
             }
     ]
   };
