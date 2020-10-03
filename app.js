@@ -417,6 +417,12 @@ function handleQuickReply(sender_psid, received_message) {
     userInputs[user_id].department = dept;
     showDoctor(sender_psid);
   }
+  else if(received_message.startsWith("quantity:")){
+    let quan = received_message.slice(9);
+    userInputs[user_id].quantity = quan;
+    pickupordelivery(sender_psid);
+  }
+
   else if(received_message.startsWith("pickordelivery:")){
     let pickordelivery = received_message.slice(15);
     userInputs[user_id].pickordelivery = pickordelivery;
@@ -434,10 +440,7 @@ function handleQuickReply(sender_psid, received_message) {
           break; 
         case "confirm-appointment":
               saveAppointment(userInputs[user_id], sender_psid);
-          break;
-        case "quantity:":
-            pickupordelivery(sender_psid);
-          break;                
+          break;                      
         default:
             defaultReply(sender_psid);
     } 
@@ -1061,7 +1064,7 @@ const showPudding = (sender_psid) => {
           "elements": [{
             "title": "Pudding",
             "subtitle": "This type of pudding is baked and it is soft and sweet.",
-            "image_url":"https://scontent.frgn5-2.fna.fbcdn.net/v/t31.0-0/p180x540/415606_4691000434420_355451047_o.jpg?_nc_cat=109&_nc_sid=2c4854&_nc_eui2=AeF2M9RhymkUvzblKIVEcaVYZZ9IqNQbMhlln0io1BsyGeUUZNECSYed1motoMAU3T3XXsplzubf4UwghXbirA2G&_nc_ohc=kx_5FjqU2noAX_FLDXz&_nc_ht=scontent.frgn5-2.fna&tp=6&oh=2dccc6bd79739ae9a566cae4baadf8eb&oe=5F9EDD53",                       
+            "image_url":"https://www.southeast-asia.com/wp-content/uploads/2020/09/Cassava-Cake_mimomotaro.jpg",                       
             "buttons": [
                 {
                   "type": "postback",
