@@ -872,35 +872,35 @@ const startReply = (sender_psid) => {
                 "payload": {
                   "template_type": "generic",
                   "elements": [{
-                    "title": "James Smith",
-                    "subtitle": "General Surgeon",
-                    "image_url":"https://image.freepik.com/free-vector/doctor-icon-avatar-white_136162-58.jpg",                       
+                    "title": "See our delicious menu",
+                    "subtitle": "Here's menu",
+                    "image_url":"https://asian-recipe.com/wp-content/uploads/2012/09/burmese-desserts-610-1200x900.jpg",                       
                     "buttons": [
                         {
                           "type": "postback",
-                          "title": "James Smith",
+                          "title": "Order Now",
                           "payload": "Doctor:James Smith",
                         },               
                       ],
                   },{
-                    "title": "Jone",
-                    "subtitle": "abv",
-                    "image_url":"https://i.pinimg.com/originals/be/57/2a/be572a9298292d0f009b288c1827749e.jpg",                       
+                    "title": "Donation with us",
+                    "subtitle": "You can donate with our dessert as representative",
+                    "image_url":"https://www.charitytoday.co.uk/wp-content/uploads/2020/06/Donate.jpg",                       
                     "buttons": [
                         {
                           "type": "postback",
-                          "title": "Jone",
+                          "title": "Donate",
                           "payload": "Doctor:Jone",
                         },               
                       ],
                   },{
-                    "title": "Barbara Young",
-                    "subtitle": "General Surgeon",
-                    "image_url":"https://cdn.iconscout.com/icon/free/png-512/doctor-567-1118047.png",                       
+                    "title": "Loyalty",
+                    "subtitle": "You can be a loyal member now",
+                    "image_url":"https://www.magesolution.com/blog/wp-content/uploads/2020/01/customer-engagement-loyalty.jpg",                       
                     "buttons": [
                         {
                           "type": "postback",
-                          "title": "Barbara Young",
+                          "title": "Loyalty",
                           "payload": "Doctor:Barbara Young",
                         },               
                       ],
