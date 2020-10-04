@@ -357,14 +357,13 @@ app.get('https://okphdessert.herokuapp.com/setgsbutton',function(req,res){
 
 //Set up Persistent Menu. To run one time
 //eg https://fbstarter.herokuapp.com/setpersistentmenu
-app.get('https://graph.facebook.com/v8.0/me/custom_user_settings?psid=<PSID>&access_token=<PAGE_ACCESS_TOKEN>',function(req,res){
+app.get('/setpersistentmenu',function(req,res){
     setupPersistentMenu(res);    
 });
 
-
 //Remove Get Started and Persistent Menu. To run one time
 //eg https://fbstarter.herokuapp.com/clear
-app.get('https://okphdessert.herokuapp.com/clear',function(req,res){    
+app.get('/clear',function(req,res){    
     removePersistentMenu(res);
 });
 
@@ -1494,8 +1493,8 @@ const setupPersistentMenu = (res) => {
             "call_to_actions":[
                 {
                   "type":"postback",
-                  "title":"Start over",
-                  "payload":"startReply"
+                  "title":"View My Tasks",
+                  "payload":"view-tasks"
                 },
                 {
                   "type":"postback",
