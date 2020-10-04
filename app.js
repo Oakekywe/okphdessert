@@ -1484,7 +1484,7 @@ FUNCTION TO SET UP PERSISTENT MENU
 ***********************************/
 
 
-const setupPersistentMenu = (res,sender_psid) => {
+const setupPersistentMenu = (res) => {
   var messageData = { 
       "persistent_menu":[
           {
