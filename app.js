@@ -725,27 +725,14 @@ function webviewTest(sender_psid){
 
 function loginform(sender_psid){
   let response;
-  response = {
-      "attachment": {
-        "type": "template",
-        "payload": {
-          "template_type": "generic",
-          "elements": [{
-            "title": "Click to open webview?",                       
-            "buttons": [              
-              {
-                "type": "web_url",
-                "title": "webview",
-                "url":APP_URL+"loginform/"+sender_psid,
-                 "webview_height_ratio": "full",
-                "messenger_extensions": true,          
-              },
+  response = { "url":APP_URL+"loginform/"+sender_psid
+     
               
-            ],
-          }]
-        }
-      }
-    }
+            
+          }
+        
+      
+    
   callSendAPI(sender_psid, response);
 }
 /**************
