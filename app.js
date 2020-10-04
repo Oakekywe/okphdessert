@@ -145,6 +145,10 @@ app.post('/test',function(req,res){
     callSend(sender_psid, response);
 });
 
+app.get ('/loginform'function(req,res){    
+    res.render('loginform.ejs');
+});
+
 app.get('/admin/appointments', async function(req,res){
  
   const appointmentsRef = db.collection('appointments');
