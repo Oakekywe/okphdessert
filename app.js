@@ -145,7 +145,7 @@ app.post('/test',function(req,res){
     callSend(sender_psid, response);
 });
 
-app.get ('/loginform'function(req,res){    
+app.get ('/loginform',function(req,res){    
     res.render('loginform.ejs');
 });
 
