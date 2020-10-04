@@ -607,7 +607,7 @@ const handlePostback = (sender_psid, received_postback) => {
     quantity(sender_psid);
   }
   else{
-donate
+
       switch(payload) {  
       case "sanwinMakin":
           showSanwinmakin(sender_psid);
