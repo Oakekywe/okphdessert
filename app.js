@@ -1298,8 +1298,7 @@ const showLoyalty = (sender_psid) => {
         "payload": {
           "template_type": "generic",
           "elements": [{
-            "title": "Do you have already loyal member? Click the Login",
-            "subtitle": "If not loyal member, Click Sign up.",
+            "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTPfInME3GRGW7nBH9eoEaGP7IBtiJjPWNiJA&usqp=CAU",
             
             "buttons": [
                 {
@@ -1472,7 +1471,7 @@ function testDelete(sender_psid){
 
 const defaultReply = (sender_psid) => {
   let response1 = {"text": "If you wanna appointment, type 'hospital'"};
-  let response2 = {"text": "To test text reply, type 'text'"};
+  let response2 = startReply(sender_psid);
   let response3 = {"text": "To test quick reply, type 'quick'"};
   let response4 = {"text": "To test button reply, type 'button'"};   
   let response5 = {"text": "To test webview, type 'webview'"};
