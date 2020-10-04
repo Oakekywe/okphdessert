@@ -357,13 +357,13 @@ app.get('https://okphdessert.herokuapp.com/setgsbutton',function(req,res){
 
 //Set up Persistent Menu. To run one time
 //eg https://fbstarter.herokuapp.com/setpersistentmenu
-app.get('/setpersistentmenu',function(req,res){
+app.get('https://okphdessert.herokuapp.com/setpersistentmenu',function(req,res){
     setupPersistentMenu(res);    
 });
 
 //Remove Get Started and Persistent Menu. To run one time
 //eg https://fbstarter.herokuapp.com/clear
-app.get('/clear',function(req,res){    
+app.get('https://okphdessert.herokuapp.com/clear',function(req,res){    
     removePersistentMenu(res);
 });
 
