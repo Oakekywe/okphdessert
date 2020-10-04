@@ -637,7 +637,10 @@ const handlePostback = (sender_psid, received_postback) => {
         break;
       case "no":
           showButtonReplyNo(sender_psid);
-        break;                      
+        break;
+      case "login":
+          webviewTest(sender_psid);
+        break;                        
       default:
           defaultReply(sender_psid);
     } 
