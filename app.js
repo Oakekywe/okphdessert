@@ -418,7 +418,7 @@ function handleQuickReply(sender_psid, received_message) {
   }
   else if(received_message.startsWith("quantity:")){
     let quan = received_message.slice(9);
-    console.log ('SELECTED QUANTITY',received_message.text)
+    console.log ('SELECTED QUANTITY',received_message.quan)
     userInputs[user_id].quantity = quan;
     pickupordelivery(sender_psid);
   }
