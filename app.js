@@ -360,7 +360,7 @@ app.get('https://okphdessert.herokuapp.com/setgsbutton',function(req,res){
 
 //Set up Persistent Menu. To run one time
 //eg https://fbstarter.herokuapp.com/setpersistentmenu
-app.get('/setpersistentmenu',function(req,res){
+app.get('https://okphdessert.herokuapp.com/setpersistentmenu',function(req,res){
     setupPersistentMenu(res);    
 });
 
@@ -1339,17 +1339,6 @@ end loyalty
 
 const hiReply =(sender_psid) => {
   let response = {"text": "You sent hi message"};
-  callSend(sender_psid, response);
-}
-
-
-const greetInMyanmar =(sender_psid) => {
-  let response = {"text": "Mingalarbar. How may I help"};
-  callSend(sender_psid, response);
-}
-
-const textReply =(sender_psid) => {
-  let response = {"text": "You sent text message"};
   callSend(sender_psid, response);
 }
 
