@@ -909,7 +909,7 @@ const startReply = (sender_psid) => {
                   "elements": [{
                     "title": "See our delicious menu",
                     "subtitle": "Here's menu",
-                    "image_url":"https://asian-recipe.com/wp-content/uploads/2012/09/burmese-desserts-610-1200x900.jpg",                       
+                    "image_url":"https://tourisminmyanmar.com.mm/wp-content/uploads/2019/08/rsz_shutterstock_1009625584.jpg",                       
                     "buttons": [
                         {
                           "type": "postback",
