@@ -1470,21 +1470,9 @@ function testDelete(sender_psid){
 }
 
 const defaultReply = (sender_psid) => {
-  let response1 = {"text": "If you wanna appointment, type 'hospital'"};
-  let response2 = startReply(sender_psid);
-  let response3 = {"text": "To test quick reply, type 'quick'"};
-  let response4 = {"text": "To test button reply, type 'button'"};   
-  let response5 = {"text": "To test webview, type 'webview'"};
-    callSend(sender_psid, response1).then(()=>{
-      return callSend(sender_psid, response2).then(()=>{
-        return callSend(sender_psid, response3).then(()=>{
-          return callSend(sender_psid, response4).then(()=>{
-            return callSend(sender_psid, response5)
-            
-            });
-          });
-        });
-      });  
+  let response = startReply(sender_psid);
+  
+    callSend(sender_psid, response) 
 }
 
 const callSendAPI = (sender_psid, response) => {   
