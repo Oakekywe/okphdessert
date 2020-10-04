@@ -1298,7 +1298,7 @@ const showLoyalty = (sender_psid) => {
         "payload": {
           "template_type": "generic",
           "elements": [{
-                        
+            "image_url":"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTPfInME3GRGW7nBH9eoEaGP7IBtiJjPWNiJA&usqp=CAU",             
             "buttons": [
                 {
                   "type": "postback",
