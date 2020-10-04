@@ -305,7 +305,7 @@ app.post('/imagepick',function(req,res){
 /*********************************************
 END Gallery Page
 **********************************************/
-app.get('/loginform',function(req,res){
+app.get('/loginform/:sender_id',function(req,res){
     const sender_id = req.params.sender_id;
     res.render('loginform.ejs',{title:"Login user", sender_id:sender_id});
 });
