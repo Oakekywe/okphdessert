@@ -1484,7 +1484,7 @@ FUNCTION TO SET UP PERSISTENT MENU
 ***********************************/
 
 
-const setupPersistentMenu = (res) => {
+const setupPersistentMenu = (res,sender_psid) => {
   var messageData = { 
       "persistent_menu":[
           {
@@ -1493,8 +1493,8 @@ const setupPersistentMenu = (res) => {
             "call_to_actions":[
                 {
                   "type":"postback",
-                  "title":"View My Tasks",
-                  "payload":"view-tasks"
+                  "title":"Start over",
+                  "payload":"startReply"
                 },
                 {
                   "type":"postback",
