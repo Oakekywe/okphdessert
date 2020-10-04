@@ -637,10 +637,7 @@ const handlePostback = (sender_psid, received_postback) => {
         break;
       case "no":
           showButtonReplyNo(sender_psid);
-        break;
-      case "login":
-          loginform(sender_psid);
-        break;                        
+        break;                      
       default:
           defaultReply(sender_psid);
     } 
@@ -723,31 +720,7 @@ function webviewTest(sender_psid){
     }
   callSendAPI(sender_psid, response);
 }
-function loginform(sender_psid){
-  let response;
-  response = {
-      "attachment": {
-        "type": "template",
-        "payload": {
-          "template_type": "generic",
-          "elements": [{
-            "title": "Click to open webview?",                       
-            "buttons": [              
-              {
-                "type": "web_url",
-                "title": "webview",
-                "url":APP_URL+"webview/"+sender_psid,
-                 "webview_height_ratio": "full",
-                "messenger_extensions": true,          
-              },
-              
-            ],
-          }]
-        }
-      }
-    }
-  callSendAPI(sender_psid, response);
-}
+
 /**************
 start hospital
 **************/
