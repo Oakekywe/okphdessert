@@ -624,6 +624,9 @@ const handlePostback = (sender_psid, received_postback) => {
         break; 
       case "donate":
           showDonate(sender_psid);
+        break;  
+      case "loyalty":
+          showLoyalty(sender_psid);
         break;       
       case "yes":
           showButtonReplyYes(sender_psid);
@@ -1280,6 +1283,51 @@ const showDonate = (sender_psid) => {
 
 /**************
 end donate
+**************/
+
+/**************
+start loyalty
+**************/
+
+const showLoyalty = (sender_psid) => {
+    let response1 = {"text": "Our loyalty program is clear. If you're already a member, click login button and enjoy your points."};
+    let response2 = {"text": "If you're not a member, you can signup a loyal member."};
+    let response3 = {
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "generic",
+          "elements": [{
+            "title": "Do you have already loyal member? Click the Login",
+            "subtitle": "If not loyal member, Click Sign up.",
+            
+            "buttons": [
+                {
+                  "type": "postback",
+                  "title": "Login",
+                  "payload": "login",
+                },    
+                {
+                  "type": "postback",
+                  "title": "Sign up",
+                  "payload": "signup",
+                },           
+              ],
+          }
+
+          ]
+        }
+      }
+    }
+     callSend(sender_psid, response1).then(()=>{
+        return callSend(sender_psid, response2).then(()=>{;
+        return callSend(sender_psid, response3);
+        });
+      });
+}
+
+/**************
+end loyalty
 **************/
 
 const hiReply =(sender_psid) => {
