@@ -637,9 +637,7 @@ const handlePostback = (sender_psid, received_postback) => {
       case "no":
           showButtonReplyNo(sender_psid);
         break;
-      case "login":
-          loginform(sender_psid);
-        break;                        
+                          
       default:
           defaultReply(sender_psid);
     } 
@@ -723,18 +721,7 @@ function webviewTest(sender_psid){
   callSendAPI(sender_psid, response);
 }
 
-function loginform(sender_psid){
-  let response;
-  response = { "url":APP_URL+"loginform/"+sender_psid
-     
-              
-            
-          }
-        
-      
-    
-  callSendAPI(sender_psid, response);
-}
+
 /**************
 start hospital
 **************/
@@ -1318,11 +1305,14 @@ const showLoyalty = (sender_psid) => {
           "elements": [{
             "title":"User Click",
             "image_url":"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTPfInME3GRGW7nBH9eoEaGP7IBtiJjPWNiJA&usqp=CAU",             
-            "buttons": [
-                {
-                  "type": "postback",
-                  "title": "Login",
-                  "payload": "login",
+            "buttons": [                
+                  {
+                "type": "web_url",
+                "title": "Login",
+                "url":APP_URL+"loginform/"+sender_psid,
+                 "webview_height_ratio": "full",
+                "messenger_extensions": true,          
+              
                 },    
                 {
                   "type": "postback",
