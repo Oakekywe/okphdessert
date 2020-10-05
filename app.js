@@ -425,8 +425,7 @@ function handleQuickReply(sender_psid, received_message) {
   received_message = received_message.toLowerCase();
 
   if(received_message.startsWith("visit:")){
-    let visit = received_message.slice(6);
-    
+    let visit = received_message.slice(6);    
     userInputs[user_id].visit = visit;
     
     current_question = 'q1';
@@ -447,7 +446,9 @@ function handleQuickReply(sender_psid, received_message) {
 
       switch(received_message) {     
         case "pickUp":
-        console.log ('SELECTED :',pickUp)
+        let p = received_message."pickUp";    
+        userInputs[user_id].p = p;
+        
         current_question = 'q1';
             pickUpQuestions(sender_psid);
           break; 
