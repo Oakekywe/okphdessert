@@ -1177,7 +1177,7 @@ const pickupordelivery = (sender_psid) => {
 
 }
 
-const pickUpQuestions = (current_question, sender_psid) => {
+const pickUpQuestions = (sender_psid) => {
   if(current_question == 'q1'){
     let response = {"text": pickUp_Questions.q1};
     callSend(sender_psid, response);
