@@ -33,6 +33,23 @@ const bot_questions = {
   "q7": "please leave a message"
 }
 
+const pickUp_Questions = {
+  "q1": "What date do you want to order? (yyyy-mm-dd)",
+  "q2": "What is your full name?",
+  "q3": "What is your Phone number?",
+  "q4": "What email do you use?",
+  "q5": "Anything to say?"
+}
+
+const delivery_Questions = {
+  "q1": "What date do you want to order? (yyyy-mm-dd)",
+  "q2": "What is your full name?",
+  "q3": "What is your Phone number?",
+  "q4": "What email do you use?",
+  "q5": "Which address would you like to deliver?",
+  "q6": "Anything to say?"
+}
+
 let current_question = '';
 
 let user_id = ''; 
@@ -360,7 +377,7 @@ app.get('https://okphdessert.herokuapp.com/setgsbutton',function(req,res){
 
 //Set up Persistent Menu. To run one time
 //eg https://fbstarter.herokuapp.com/setpersistentmenu
-app.get('https://okphdessert.herokuapp.com/setpersistentmenu',function(req,res){
+app.get('/setpersistentmenu',function(req,res){
     setupPersistentMenu(res);    
 });
 
@@ -425,16 +442,16 @@ function handleQuickReply(sender_psid, received_message) {
     userInputs[user_id].quantity = quan;
     pickupordelivery(sender_psid);
   }
-
-  else if(received_message.startsWith("pickordelivery:")){
-    let pickordelivery = received_message.slice(15);
-    userInputs[user_id].pickordelivery = pickordelivery;
-    current_question = 'q1';
-    botQuestions(current_question, sender_psid);
-  }  
+  
   else{
 
-      switch(received_message) {                
+      switch(received_message) {     
+        case "pickUp":
+            pickUpQuestions(sender_psid);
+          break; 
+        case "delivery":
+            deliveryQuestions(sender_psid);
+          break;            
         case "on":
             showQuickReplyOn(sender_psid);
           break;
@@ -603,13 +620,7 @@ const handlePostback = (sender_psid, received_postback) => {
     console.log('TEST', userInputs);
     firstOrFollowUp(sender_psid);
   }
-  else if(payload.startsWith("SanwinMakin:")){
-    let sanwinmakin_name = payload.slice(12);
-    console.log('SELECTED SANWIN MAKIN IS: ', sanwinmakin_name);
-    userInputs[user_id].SanwinMakin = sanwinmakin_name;
-    console.log('TEST', userInputs);
-    quantity(sender_psid);
-  }
+  
   else{
 
       switch(payload) {  
@@ -1146,43 +1157,60 @@ const pickupordelivery = (sender_psid) => {
             {
               "content_type":"text",
               "title":"Pick up",
-              "payload":"pickordelivery:Pick Up",              
+              "payload":"pickUp",              
             },{
               "content_type":"text",
               "title":"Delivery",
-              "payload":"pickordelivery:Delivery",             
+              "payload":"delivery",             
             }
     ]
   };
   callSend(sender_psid, response);
 
 }
-/*
-const botQuestions = (current_question, sender_psid) => {
+
+const pickUpQuestions = (current_question, sender_psid) => {
   if(current_question == 'q1'){
-    let response = {"text": bot_questions.q1};
+    let response = {"text": pickUp_Questions.q1};
     callSend(sender_psid, response);
   }else if(current_question == 'q2'){
-    let response = {"text": bot_questions.q2};
+    let response = {"text": pickUp_Questions.q2};
     callSend(sender_psid, response);
   }else if(current_question == 'q3'){
-    let response = {"text": bot_questions.q3};
+    let response = {"text": pickUp_Questions.q3};
     callSend(sender_psid, response);
   }else if(current_question == 'q4'){
-    let response = {"text": bot_questions.q4};
+    let response = {"text": pickUp_Questions.q4};
     callSend(sender_psid, response);
   }else if(current_question == 'q5'){
-    let response = {"text": bot_questions.q5};
-    callSend(sender_psid, response);
-  }else if(current_question == 'q6'){
-    let response = {"text": bot_questions.q6};
-    callSend(sender_psid, response);
-  }else if(current_question == 'q7'){
-    let response = {"text": bot_questions.q7};
+    let response = {"text": pickUp_Questions.q5};
     callSend(sender_psid, response);
   }
 }
 
+const deliveryQuestions = (current_question, sender_psid) => {
+  if(current_question == 'q1'){
+    let response = {"text": delivery_Questions.q1};
+    callSend(sender_psid, response);
+  }else if(current_question == 'q2'){
+    let response = {"text": delivery_Questions.q2};
+    callSend(sender_psid, response);
+  }else if(current_question == 'q3'){
+    let response = {"text": delivery_Questions.q3};
+    callSend(sender_psid, response);
+  }else if(current_question == 'q4'){
+    let response = {"text": delivery_Questions.q4};
+    callSend(sender_psid, response);
+  }else if(current_question == 'q5'){
+    let response = {"text": delivery_Questions.q5};
+    callSend(sender_psid, response);
+  }else if(current_question == 'q6'){
+    let response = {"text": delivery_Questions.q6};
+    callSend(sender_psid, response);
+  }
+}
+
+/*
 const confirmAppointment = (sender_psid) => {
   console.log('APPOINTMENT INFO', userInputs);
   let summery = "department:" + userInputs[user_id].department + "\u000A";
