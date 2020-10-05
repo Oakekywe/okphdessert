@@ -445,10 +445,7 @@ function handleQuickReply(sender_psid, received_message) {
   else{
 
       switch(received_message) {     
-        case "pickUp":
-        let p = received_message."pickUp";    
-        userInputs[user_id].p = p;
-        
+        case "pickUp":        
         current_question = 'q1';
             pickUpQuestions(sender_psid);
           break; 
