@@ -23,7 +23,7 @@ const uuidv4 = uuid();
 app.use(body_parser.json());
 app.use(body_parser.urlencoded());
 
-/*
+
 const bot_questions = {
   "q1": "please enter date (yyyy-mm-dd)",
   "q2": "please enter time (hh:mm)",
@@ -33,7 +33,7 @@ const bot_questions = {
   "q6": "please enter email",
   "q7": "please leave a message"
 }
-*/
+
 const pickUp_Questions = {
   "q1": "What date do you want to order? (yyyy-mm-dd)",
   "q2": "What is your full name?",
@@ -424,15 +424,14 @@ function handleQuickReply(sender_psid, received_message) {
   console.log('QUICK REPLY', received_message);
 
   received_message = received_message.toLowerCase();
-/*
+
   if(received_message.startsWith("visit:")){
     let visit = received_message.slice(6);    
     userInputs[user_id].visit = visit;
     
     current_question = 'q1';
     botQuestions(current_question, sender_psid);
-  }else */
-  if(received_message.startsWith("department:")){
+  }else if(received_message.startsWith("department:")){
     let dept = received_message.slice(11);
     userInputs[user_id].department = dept;
     showDoctor(sender_psid);
@@ -447,8 +446,7 @@ function handleQuickReply(sender_psid, received_message) {
   else{
 
       switch(received_message) {     
-        case "pickUp":        
-        current_question = 'q1';
+        case "pickUp": 
             pickUpQuestions(sender_psid);
           break; 
         case "delivery":
