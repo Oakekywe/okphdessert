@@ -620,7 +620,13 @@ const handlePostback = (sender_psid, received_postback) => {
     console.log('TEST', userInputs);
     firstOrFollowUp(sender_psid);
   }
-  
+  else if(payload.startsWith("SanwinMakin:")){
+    let sanwinmakin_name = payload.slice(12);
+    console.log('SELECTED SANWIN MAKIN IS: ', sanwinmakin_name);
+    userInputs[user_id].SanwinMakin = sanwinmakin_name;
+    console.log('TEST', userInputs);
+    quantity(sender_psid);
+  }
   else{
 
       switch(payload) {  
