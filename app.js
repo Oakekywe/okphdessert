@@ -447,6 +447,8 @@ function handleQuickReply(sender_psid, received_message) {
 
       switch(received_message) {     
         case "pickUp":
+        console.log ('SELECTED :',pickUp)
+        current_question = 'q1';
             pickUpQuestions(sender_psid);
           break; 
         case "delivery":
