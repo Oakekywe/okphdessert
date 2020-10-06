@@ -440,7 +440,8 @@ function handleQuickReply(sender_psid, received_message) {
   else{
 
       switch(received_message) {     
-        case "pickup":        
+        case "pickup": 
+        userInputs[user_id].pickup = "pickup";       
             confirmOrder(current_question, sender_psid);
           break; 
         case "delivery":
