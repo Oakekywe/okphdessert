@@ -1249,7 +1249,7 @@ const deliveryQuestions = (current_question, sender_psid) => {
 }
 
 const confirmOrder = (sender_psid) => {
-console.log ('TEST', summery); 
+console.log ('TEST', 'success'); 
 }
 /*
 const confirmAppointment = (sender_psid) => {
