@@ -425,7 +425,14 @@ function handleQuickReply(sender_psid, received_message) {
 
   received_message = received_message.toLowerCase();
 
-  if(received_message.startsWith("visit:")){
+  if(received_message.startsWith("P or D:")){
+    let pd = received_message.slice(7);    
+    userInputs[user_id].pd = pd;
+    
+    current_question = 'q1';
+    pickUpQuestions(current_question, sender_psid);
+
+  }else if(received_message.startsWith("visit:")){
     let visit = received_message.slice(6);    
     userInputs[user_id].visit = visit;
     
@@ -446,12 +453,7 @@ function handleQuickReply(sender_psid, received_message) {
   else{
 
       switch(received_message) {     
-        case "pickUp": 
-            pickUpQuestions(sender_psid);
-          break; 
-        case "delivery":
-            deliveryQuestions(sender_psid);
-          break;            
+               
         case "on":
             showQuickReplyOn(sender_psid);
           break;
@@ -1163,11 +1165,11 @@ const pickupordelivery = (sender_psid) => {
             {
               "content_type":"text",
               "title":"Pick up",
-              "payload":"pickUp",              
+              "payload":"P or D:pickUp",              
             },{
               "content_type":"text",
               "title":"Delivery",
-              "payload":"delivery",             
+              "payload":"P or D:delivery",             
             }
     ]
   };
