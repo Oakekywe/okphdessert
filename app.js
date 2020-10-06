@@ -1224,7 +1224,7 @@ const pickupordelivery = (sender_psid) => {
 
 const confirmOrder = (userInputs) => {
 console.log('ORDER INFO', userInputs);
-  let last = "SELECTED SANWIN MAKIN IS:" + userInputs[user_id].sanwinMakin + "\u000A";
+  let last = "SELECTED SANWIN MAKIN IS:" + userInputs[user_id].SanwinMakin + "\u000A";
   last += "date:" + userInputs[user_id].date + "\u000A";
   last += "name:" + userInputs[user_id].name + "\u000A";
   last += "phone:" + userInputs[user_id].phone + "\u000A";
