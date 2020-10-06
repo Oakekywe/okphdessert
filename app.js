@@ -425,7 +425,7 @@ function handleQuickReply(sender_psid, received_message) {
 
   received_message = received_message.toLowerCase();
 
-  if(received_message.startsWith("PorD:")){
+  if(received_message.startsWith("pord:")){
     let pd = received_message.slice(5);    
     userInputs[user_id].pd = pd;
     
@@ -1170,11 +1170,11 @@ const pickupordelivery = (sender_psid) => {
             {
               "content_type":"text",
               "title":"Pick up",
-              "payload":"PorD:pickUp",              
+              "payload":"pord:pickUp",              
             },{
               "content_type":"text",
               "title":"Delivery",
-              "payload":"PorD:delivery",             
+              "payload":"pord:delivery",             
             }
     ]
   };
