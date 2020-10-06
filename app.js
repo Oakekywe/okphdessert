@@ -481,7 +481,7 @@ const handleMessage = (sender_psid, received_message) => {
   console.log('TEXT REPLY', received_message);
   //let message;
   let response;
-
+/*
   if(received_message.attachments){
      handleAttachments(sender_psid, received_message.attachments);
   }else if(current_question == 'q1'){
@@ -522,7 +522,8 @@ const handleMessage = (sender_psid, received_message) => {
      confirmAppointment(sender_psid);
   }
 
-  else if(received_message.attachments){
+  else
+  */ if(received_message.attachments){
      handleAttachments(sender_psid, received_message.attachments);
   }else if(current_question == 'q1'){
      console.log('DATE ENTERED',received_message.text);
