@@ -1222,7 +1222,35 @@ const pickupordelivery = (sender_psid) => {
 }
 
 const confirmOrder = (sender_psid) => {
-console.log ('TEST', 'success'); 
+console.log('ORDER INFO', userInputs);
+  let summery = "SELECTED SANWIN MAKIN IS:" + userInputs[user_id].sanwinMakin + "\u000A";
+  summery += "date:" + userInputs[user_id].date + "\u000A";
+  summery += "name:" + userInputs[user_id].name + "\u000A";
+  summery += "phone:" + userInputs[user_id].phone + "\u000A";
+  summery += "email:" + userInputs[user_id].email + "\u000A";
+  summery += "message:" + userInputs[user_id].message + "\u000A";
+  summery += "pickup:" + userInputs[user_id].pickup + "\u000A";
+
+  let response1 = {"text": summery};
+
+  let response2 = {
+    "text": "Select your reply",
+    "quick_replies":[
+            {
+              "content_type":"text",
+              "title":"Confirm",
+              "payload":"confirm-appointment",              
+            },{
+              "content_type":"text",
+              "title":"Cancel",
+              "payload":"off",             
+            }
+    ]
+  };
+  
+  callSend(sender_psid, response1).then(()=>{
+    return callSend(sender_psid, response2);
+  });
 }
 /*
 const confirmAppointment = (sender_psid) => {
