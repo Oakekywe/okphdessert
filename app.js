@@ -24,6 +24,15 @@ app.use(body_parser.json());
 app.use(body_parser.urlencoded());
 
 
+const bot_questions = {
+  "q1": "please enter date (yyyy-mm-dd)",
+  "q2": "please enter time (hh:mm)",
+  "q3": "please enter full name",
+  "q4": "please enter gender",
+  "q5": "please enter phone number",
+  "q6": "please enter email",
+  "q7": "please leave a message"
+}
 
 const pickUp_Questions = {
   "q1": "What date do you want to order? (yyyy-mm-dd)",
