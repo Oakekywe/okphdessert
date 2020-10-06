@@ -34,7 +34,7 @@ const bot_questions = {
   "q7": "please leave a message"
 }
 
-const pickUp_Questions = {
+const questions = {
   "q1": "What date do you want to order? (yyyy-mm-dd)",
   "q2": "What is your full name?",
   "q3": "What is your Phone number?",
@@ -42,14 +42,6 @@ const pickUp_Questions = {
   "q5": "Anything to say?"
 }
 
-const delivery_Questions = {
-  "q1": "What date do you want to order? (yyyy-mm-dd)",
-  "q2": "What is your full name?",
-  "q3": "What is your Phone number?",
-  "q4": "What email do you use?",
-  "q5": "Which address would you like to deliver?",
-  "q6": "Anything to say?"
-}
 
 let current_question = '';
 
@@ -440,15 +432,15 @@ function handleQuickReply(sender_psid, received_message) {
     let quan = received_message.slice(9);
     console.log ('SELECTED QUANTITY:',quan)
     userInputs[user_id].quantity = quan;
-    pickupordelivery(sender_psid);
+    current_question = 'q1';
+    Questions(sender_psid);
   }
   
   else{
 
       switch(received_message) {     
-        case "pickup": 
-        current_question = 'q1';
-            pickUpQuestions(current_question, sender_psid);
+        case "pickup":        
+            confirmOrder(current_question, sender_psid);
           break; 
         case "delivery":
             deliveryQuestions(sender_psid);
@@ -529,27 +521,27 @@ const handleMessage = (sender_psid, received_message) => {
      console.log('DATE ENTERED',received_message.text);
      userInputs[user_id].date = received_message.text;
      current_question = 'q2';
-     pickUpQuestions(current_question, sender_psid);
+     Questions(current_question, sender_psid);
   }else if(current_question == 'q2'){
      console.log('FULL NAME ENTERED',received_message.text);
      userInputs[user_id].name = received_message.text;
      current_question = 'q3';
-     pickUpQuestions(current_question, sender_psid);
+     Questions(current_question, sender_psid);
   }else if(current_question == 'q3'){
      console.log('PHONE ENTERED',received_message.text);
      userInputs[user_id].phone = received_message.text;
      current_question = 'q4';
-     pickUpQuestions(current_question, sender_psid);
+     Questions(current_question, sender_psid);
   }else if(current_question == 'q4'){
      console.log('EMAIL ENTERED',received_message.text);
      userInputs[user_id].email = received_message.text;
      current_question = 'q5';
-     pickUpQuestions(current_question, sender_psid);
+     Questions(current_question, sender_psid);
   }else if(current_question == 'q5'){
      console.log('MESSAGE ENTERED',received_message.text);
      userInputs[user_id].message = received_message.text;
      current_question = '';
-     confirmOrder(sender_psid);
+     pickupordelivery(sender_psid);
   }
 
   else {
@@ -1187,6 +1179,27 @@ const quantity = (sender_psid) => {
 
 }
 
+
+const Questions = (current_question,sender_psid) => {
+  if(current_question == 'q1'){
+    let response = {"text": questions.q1};
+    callSend(sender_psid, response);
+  }else if(current_question == 'q2'){
+    let response = {"text": questions.q2};
+    callSend(sender_psid, response);
+  }else if(current_question == 'q3'){
+    let response = {"text": questions.q3};
+    callSend(sender_psid, response);
+  }else if(current_question == 'q4'){
+    let response = {"text": questions.q4};
+    callSend(sender_psid, response);
+  }else if(current_question == 'q5'){
+    let response = {"text": questions.q5};
+    callSend(sender_psid, response);
+  }
+}
+
+
 const pickupordelivery = (sender_psid) => {
 
   let response = {
@@ -1205,47 +1218,6 @@ const pickupordelivery = (sender_psid) => {
   };
   callSend(sender_psid, response);
 
-}
-
-const pickUpQuestions = (current_question,sender_psid) => {
-  if(current_question == 'q1'){
-    let response = {"text": pickUp_Questions.q1};
-    callSend(sender_psid, response);
-  }else if(current_question == 'q2'){
-    let response = {"text": pickUp_Questions.q2};
-    callSend(sender_psid, response);
-  }else if(current_question == 'q3'){
-    let response = {"text": pickUp_Questions.q3};
-    callSend(sender_psid, response);
-  }else if(current_question == 'q4'){
-    let response = {"text": pickUp_Questions.q4};
-    callSend(sender_psid, response);
-  }else if(current_question == 'q5'){
-    let response = {"text": pickUp_Questions.q5};
-    callSend(sender_psid, response);
-  }
-}
-
-const deliveryQuestions = (current_question, sender_psid) => {
-  if(current_question == 'q1'){
-    let response = {"text": delivery_Questions.q1};
-    callSend(sender_psid, response);
-  }else if(current_question == 'q2'){
-    let response = {"text": delivery_Questions.q2};
-    callSend(sender_psid, response);
-  }else if(current_question == 'q3'){
-    let response = {"text": delivery_Questions.q3};
-    callSend(sender_psid, response);
-  }else if(current_question == 'q4'){
-    let response = {"text": delivery_Questions.q4};
-    callSend(sender_psid, response);
-  }else if(current_question == 'q5'){
-    let response = {"text": delivery_Questions.q5};
-    callSend(sender_psid, response);
-  }else if(current_question == 'q6'){
-    let response = {"text": delivery_Questions.q6};
-    callSend(sender_psid, response);
-  }
 }
 
 const confirmOrder = (sender_psid) => {
