@@ -453,7 +453,7 @@ function handleQuickReply(sender_psid, received_message) {
   else{
 
       switch(received_message) {     
-        case "pickUp": 
+        case "pickup": 
             pickUpQuestions(sender_psid);
           break; 
         case "delivery":
@@ -527,6 +527,36 @@ const handleMessage = (sender_psid, received_message) => {
      
      confirmAppointment(sender_psid);
   }
+
+  else if(received_message.attachments){
+     handleAttachments(sender_psid, received_message.attachments);
+  }else if(current_question == 'q1'){
+     console.log('DATE ENTERED',received_message.text);
+     userInputs[user_id].date = received_message.text;
+     current_question = 'q2';
+     pickUpQuestions(current_question, sender_psid);
+  }else if(current_question == 'q2'){
+     console.log('FULL NAME ENTERED',received_message.text);
+     userInputs[user_id].name = received_message.text;
+     current_question = 'q3';
+     pickUpQuestions(current_question, sender_psid);
+  }else if(current_question == 'q3'){
+     console.log('PHONE ENTERED',received_message.text);
+     userInputs[user_id].phone = received_message.text;
+     current_question = 'q4';
+     pickUpQuestions(current_question, sender_psid);
+  }else if(current_question == 'q4'){
+     console.log('EMAIL ENTERED',received_message.text);
+     userInputs[user_id].email = received_message.text;
+     current_question = 'q5';
+     pickUpQuestions(current_question, sender_psid);
+  }else if(current_question == 'q5'){
+     console.log('MESSAGE ENTERED',received_message.text);
+     userInputs[user_id].message = received_message.text;
+     current_question = '';
+     confirmOrder(sender_psid);
+  }
+
   else {
       
       let user_message = received_message.text;      
@@ -1170,11 +1200,11 @@ const pickupordelivery = (sender_psid) => {
             {
               "content_type":"text",
               "title":"Pick up",
-              "payload":"pord:pickUp",              
+              "payload":"pickup",              
             },{
               "content_type":"text",
               "title":"Delivery",
-              "payload":"pord:delivery",             
+              "payload":"delivery",             
             }
     ]
   };
@@ -1223,6 +1253,9 @@ const deliveryQuestions = (current_question, sender_psid) => {
   }
 }
 
+const confirmOrder = (sender_psid) => {
+console.log ('TEST', summery); 
+}
 /*
 const confirmAppointment = (sender_psid) => {
   console.log('APPOINTMENT INFO', userInputs);
