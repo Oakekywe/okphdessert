@@ -649,8 +649,7 @@ const handlePostback = (sender_psid, received_postback) => {
   else if(payload.startsWith("SanwinMakin:")){
     let sanwinmakin_name = payload.slice(12);
     console.log('SELECTED SANWIN MAKIN IS: ', sanwinmakin_name);
-
-    userInputs[user_id].sanwinmakin = sanwinmakin_name;
+    userInputs[user_id].SanwinMakin = sanwinmakin_name;
     console.log('TEST', userInputs);
     quantity(sender_psid);
   }
@@ -1223,9 +1222,9 @@ const pickupordelivery = (sender_psid) => {
 
 }
 
-const confirmOrder = (sender_psid, userInputs) => {
+const confirmOrder = (sender_psid) => {
 console.log('ORDER INFO', userInputs);
-  let last = "SELECTED SANWIN MAKIN IS:" + userInputs[user_id].sanwinmakin + "\u000A";
+  let last = "SELECTED SANWIN MAKIN IS:" + userInputs[user_id].sanwinMakin + "\u000A";
   last += "date:" + userInputs[user_id].date + "\u000A";
   last += "name:" + userInputs[user_id].name + "\u000A";
   last += "phone:" + userInputs[user_id].phone + "\u000A";
