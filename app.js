@@ -1226,16 +1226,16 @@ const pickupordelivery = (sender_psid) => {
 
 const confirmOrder = (sender_psid) => {
 console.log('ORDER INFO', userInputs);
-  let last = "type:" + userInputs[user_id].type + "\u000A";
-  last = "SELECTED SANWIN MAKIN IS:" + userInputs[user_id].sanwinMakin + "\u000A";
-  last += "date:" + userInputs[user_id].date + "\u000A";
-  last += "name:" + userInputs[user_id].name + "\u000A";
-  last += "phone:" + userInputs[user_id].phone + "\u000A";
-  last += "email:" + userInputs[user_id].email + "\u000A";
-  last += "message:" + userInputs[user_id].message + "\u000A";
-  last += "pickup:" + userInputs[user_id].pickup + "\u000A";
+  let abc = "type:" + userInputs[user_id].type + "\u000A";
+  abc = "SELECTED SANWIN MAKIN IS:" + userInputs[user_id].sanwinMakin + "\u000A";
+  abc += "date:" + userInputs[user_id].date + "\u000A";
+  abc += "name:" + userInputs[user_id].name + "\u000A";
+  abc += "phone:" + userInputs[user_id].phone + "\u000A";
+  abc += "email:" + userInputs[user_id].email + "\u000A";
+  abc += "message:" + userInputs[user_id].message + "\u000A";
+  abc += "pickup:" + userInputs[user_id].pickup + "\u000A";
 
-  let response1 = {"text": last};
+  let response1 = {"text": abc};
 
   let response2 = {
     "text": "Confirm your order now.",
