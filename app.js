@@ -1413,6 +1413,10 @@ const hiReply =(sender_psid) => {
   callSend(sender_psid, response);
 }
 
+const textReply =(sender_psid) => {
+  let response = {"text": "You sent text message"};
+  callSend(sender_psid, response);
+}
 
 const quickReply =(sender_psid) => {
   let response = {
