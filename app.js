@@ -425,14 +425,7 @@ function handleQuickReply(sender_psid, received_message) {
 
   received_message = received_message.toLowerCase();
 
-  if(received_message.startsWith("pord:")){
-    let pd = received_message.slice(5);    
-    userInputs[user_id].pd = pd;
-    
-    current_question = 'q1';
-    pickUpQuestions(current_question, sender_psid);
-
-  }else if(received_message.startsWith("visit:")){
+  if(received_message.startsWith("visit:")){
     let visit = received_message.slice(6);    
     userInputs[user_id].visit = visit;
     
@@ -454,7 +447,8 @@ function handleQuickReply(sender_psid, received_message) {
 
       switch(received_message) {     
         case "pickup": 
-            pickUpQuestions(sender_psid);
+        current_question = 'q1';
+            pickUpQuestions(current_question, sender_psid);
           break; 
         case "delivery":
             deliveryQuestions(sender_psid);
