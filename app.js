@@ -155,6 +155,35 @@ app.post('/test',function(req,res){
     callSend(sender_psid, response);
 });
 
+/*********************************************
+Admin Check Order
+**********************************************/
+app.get('/admin/orders', async function(req,res){
+ 
+  const ordersRef = db.collection('orders');
+  const snapshot = await ordersRef.get();
+
+  if (snapshot.empty) {
+    res.send('no data');
+  } 
+
+  let data = []; 
+
+  snapshot.forEach(doc => {
+    let order = {};
+    order = doc.data();
+    order.doc_id = doc.id;
+
+    data.push(order);
+    
+  });
+
+  console.log('DATA:', data);
+
+  res.render('orders.ejs', {data:data});
+  
+});
+
 app.get('/admin/appointments', async function(req,res){
  
   const appointmentsRef = db.collection('appointments');
@@ -353,12 +382,7 @@ app.post('/webview',upload.single('file'),function(req,res){
           console.error(error);
         });
       }
-
-
-
      
-      
-      
            
 });
 
@@ -1276,23 +1300,7 @@ const saveOrder = (arg, sender_psid) => {
      console.log('Error', err);
   });
 }
-/*
-const saveAppointment = (arg, sender_psid) => {
-  let data = arg;
-  data.ref = generateRandom(6);
-  data.status = "pending";
-  db.collection('appointments').add(data).then((success)=>{
-    console.log('SAVED', success);
-    let text = "Thank you. We have received your appointment."+ "\u000A";
-    text += " We wil call you to confirm soon"+ "\u000A";
-    text += "Your booking reference number is:" + data.ref;
-    let response = {"text": text};
-    callSend(sender_psid, response);
-  }).catch((err)=>{
-     console.log('Error', err);
-  });
-}
-*/
+
 /**************
 end order
 **************/
