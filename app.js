@@ -1224,7 +1224,7 @@ const pickupordelivery = (sender_psid) => {
 
 }
 
-const confirmOrder = (sender_psid) => {
+const confirmOrder = (current_question, sender_psid) => {
 console.log('ORDER INFO', userInputs);
   let abc = "type:" + userInputs[user_id].type + "\u000A";
   abc = "SELECTED SANWIN MAKIN IS:" + userInputs[user_id].sanwinMakin + "\u000A";
