@@ -658,6 +658,7 @@ const handlePostback = (sender_psid, received_postback) => {
       switch(payload) {  
       case "sanwinMakin":
       userInputs[user_id].type = "sanwinMakin";
+      console.log('TEST',userInputs);
           showSanwinmakin(sender_psid);
         break;
       case "pudding":
@@ -1227,7 +1228,7 @@ const pickupordelivery = (sender_psid) => {
 const confirmOrder = (current_question, sender_psid) => {
 console.log('ORDER INFO', userInputs);
   let abc = "type:" + userInputs[user_id].type + "\u000A";
-  abc = "SELECTED SANWIN MAKIN IS:" + userInputs[user_id].sanwinMakin + "\u000A";
+  abc = "sanwinmakin:" + userInputs[user_id].SanwinMakin + "\u000A";
   abc += "date:" + userInputs[user_id].date + "\u000A";
   abc += "name:" + userInputs[user_id].name + "\u000A";
   abc += "phone:" + userInputs[user_id].phone + "\u000A";
