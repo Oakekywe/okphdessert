@@ -1237,6 +1237,7 @@ console.log('ORDER INFO', userInputs);
   abc += "email:" + userInputs[user_id].email + "\u000A";
   abc += "message:" + userInputs[user_id].message + "\u000A";
   abc += "pickup:" + userInputs[user_id].pickup + "\u000A";
+  abc += "delivery:" + userInputs[user_id].delivery + "\u000A";  
 
   let response1 = {"text": abc};
 
