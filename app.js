@@ -441,12 +441,16 @@ function handleQuickReply(sender_psid, received_message) {
 
       switch(received_message) {     
         case "pickup": 
-        userInputs[user_id].pickup = "pickup";       
-            confirmOrder(current_question, sender_psid);
+          userInputs[user_id].pickup = "pickup";       
+          confirmOrder(current_question, sender_psid);
           break; 
         case "delivery":
-            deliveryQuestions(sender_psid);
-          break;            
+          userInputs[user_id].delivery = "delivery";       
+          confirmOrder(current_question, sender_psid);
+          break;  
+        case "confirmorder":
+            saveOrder(userInputs[user_id], sender_psid);
+          break;             
         case "on":
             showQuickReplyOn(sender_psid);
           break;
@@ -676,7 +680,7 @@ const handlePostback = (sender_psid, received_postback) => {
         break;  
       case "loyalty":
           showLoyalty(sender_psid);
-        break;       
+        break;      
       case "yes":
           showButtonReplyYes(sender_psid);
         break;
@@ -689,15 +693,12 @@ const handlePostback = (sender_psid, received_postback) => {
     } 
 
   }
-
-
   
 }
 
-
 const generateRandom = (length) => {
    var result           = '';
-   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+   var characters       = 'AZ123';
    var charactersLength = characters.length;
    for ( var i = 0; i < length; i++ ) {
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
@@ -1245,7 +1246,7 @@ console.log('ORDER INFO', userInputs);
             {
               "content_type":"text",
               "title":"Confirm",
-              "payload":"confirm-appointment",              
+              "payload":"confirmorder",              
             },{
               "content_type":"text",
               "title":"Cancel",
@@ -1256,44 +1257,25 @@ console.log('ORDER INFO', userInputs);
   
   callSend(sender_psid, response1).then(()=>{
     return callSend(sender_psid, response2);
+  });
+}
+
+const saveOrder = (arg, sender_psid) => {
+  let data = arg;
+  data.ref = generateRandom(5);
+  data.status = "pending";
+  db.collection('orders').add(data).then((success)=>{
+    console.log('SAVED', success);
+    let text = "Thank you for your order."+ "\u000A";
+    text += "We will confirm your order soon."+ "\u000A";
+    text += "Your order reference code is:" + data.ref;
+    let response = {"text": text};
+    callSend(sender_psid, response);
+  }).catch((err)=>{
+     console.log('Error', err);
   });
 }
 /*
-const confirmAppointment = (sender_psid) => {
-  console.log('APPOINTMENT INFO', userInputs);
-  let summery = "department:" + userInputs[user_id].department + "\u000A";
-  summery += "doctor:" + userInputs[user_id].doctor + "\u000A";
-  summery += "visit:" + userInputs[user_id].visit + "\u000A";
-  summery += "date:" + userInputs[user_id].date + "\u000A";
-  summery += "time:" + userInputs[user_id].time + "\u000A";
-  summery += "name:" + userInputs[user_id].name + "\u000A";
-  summery += "gender:" + userInputs[user_id].gender + "\u000A";
-  summery += "phone:" + userInputs[user_id].phone + "\u000A";
-  summery += "email:" + userInputs[user_id].email + "\u000A";
-  summery += "message:" + userInputs[user_id].message + "\u000A";
-
-  let response1 = {"text": summery};
-
-  let response2 = {
-    "text": "Select your reply",
-    "quick_replies":[
-            {
-              "content_type":"text",
-              "title":"Confirm",
-              "payload":"confirm-appointment",              
-            },{
-              "content_type":"text",
-              "title":"Cancel",
-              "payload":"off",             
-            }
-    ]
-  };
-  
-  callSend(sender_psid, response1).then(()=>{
-    return callSend(sender_psid, response2);
-  });
-}
-
 const saveAppointment = (arg, sender_psid) => {
   let data = arg;
   data.ref = generateRandom(6);
