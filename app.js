@@ -1229,6 +1229,7 @@ const confirmOrder = (current_question, sender_psid) => {
 console.log('ORDER INFO', userInputs);
   let abc = "type:" + userInputs[user_id].type + "\u000A";
   abc = "sanwinmakin:" + userInputs[user_id].SanwinMakin + "\u000A";
+  abc = "quantity:" + userInputs[user_id].quantity + "\u000A";
   abc += "date:" + userInputs[user_id].date + "\u000A";
   abc += "name:" + userInputs[user_id].name + "\u000A";
   abc += "phone:" + userInputs[user_id].phone + "\u000A";
