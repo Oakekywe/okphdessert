@@ -1389,10 +1389,11 @@ const showLoyalty = (sender_psid) => {
               
                 },    
                 {
-                  "type": "postback",
+                  "type": "web_url",
                   "title": "Sign up",
-
-                  "payload": "signup",
+                  "url":APP_URL+"register/"+sender_psid,
+                  "webview_height_ratio": "full",
+                  "messenger_extensions": true,
                 },           
               ],
           }
