@@ -161,16 +161,17 @@ app.post('/register',function(req,res){
        
       let name  = req.body.name;
       let email = req.body.email;
-      let password = req.body.password;
+      let phone = req.body.phone;
       let sender = req.body.sender;  
       
-      console.log("ABC");
+      console.log("ABCDEF");
         db.collection('register').add({
         name: name,
         email: email,
-        password: password
+        phone: phone
     }).then(success => {   
           console.log("DATA SAVED")
+          thankyouReply(sender, name);
       }).catch(error => {
           console.log(error);
       }); 
