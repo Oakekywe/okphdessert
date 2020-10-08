@@ -168,8 +168,8 @@ app.post('/login', async function(req,res){
     const user = await userRef.get();
     if (!user.exists){
       console.log('TEXT:','you are not member');
-      let message = new TextMessage(`Click on following link to register`);   
-        response.send(message);
+      let response = {"text": summery};
+      callSend(response);
     } else {
       console.log('Document data:', user.data());
 
