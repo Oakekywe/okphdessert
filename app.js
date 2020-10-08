@@ -168,7 +168,6 @@ app.post('/login', async function(req,res){
       console.log('TEXT:','you are not member');
     } else {
       console.log('Document data:', user.data());
-      current_user.data = user.data().phone;
 
     }
 
