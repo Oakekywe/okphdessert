@@ -157,6 +157,34 @@ app.get('/register/:sender_id',function(req,res){
     res.render('register.ejs',{title:"register user", sender_id:sender_id});
 });
 
+app.post('/register/:sender_id',function(req,res){
+       
+      let name  = req.body.name;
+      let email = req.body.email;
+      let password = req.body.password;
+      let sender = req.body.sender;  
+
+      console.log("REQ FILE:",req.file);
+
+      let file = req.file;
+      if (file) {        
+            db.collection('registers').add({
+              name: name,
+              email: email,
+              password: password,
+              }).then(success => {   
+                console.log("DATA SAVED")
+                   
+              }).catch(error => {
+                console.log(error);
+              });
+      }
+     
+           
+});
+
+
+
 app.post('/test',function(req,res){
     const sender_psid = req.body.sender_id;     
     let response = {"text": "You  click delete button"};
