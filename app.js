@@ -157,12 +157,13 @@ app.get('/register/:sender_id',function(req,res){
     res.render('register.ejs',{title:"register user", sender_id:sender_id});
 });
 
-app.post('/register',function(req,res){
+app.post('/register',function(arg,req,res){
        
       let name  = req.body.name;
       let email = req.body.email;
       let password = req.body.password;
-      let sender = req.body.sender;  
+      let sender = req.body.sender; 
+      let data = arg;  
       
       console.log("ABC");
         db.collection('register').add(data).then((success)=>{
