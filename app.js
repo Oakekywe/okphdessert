@@ -163,8 +163,7 @@ app.post('/register/:sender_id',function(req,res){
       let email = req.body.email;
       let password = req.body.password;
       let sender = req.body.sender;  
-
-      console.log("REQ FILE:",req.file);
+      
         db.collection("registers").add({
         name: name,
         email: email,
@@ -172,6 +171,7 @@ app.post('/register/:sender_id',function(req,res){
     })
       .then(function(docRef) {
           console.log("Document written with ID: ", docRef.id);
+          thankyouReply(sender, name);
       })
       .catch(function(error) {
       console.error("Error adding document: ", error);
