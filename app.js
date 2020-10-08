@@ -149,6 +149,10 @@ app.get('/test',function(req,res){
     res.render('test.ejs');
 });
 
+app.get('/test1',function(req,res){    
+    res.render('test1.ejs');
+});
+
 app.post('/test',function(req,res){
     const sender_psid = req.body.sender_id;     
     let response = {"text": "You  click delete button"};
@@ -180,7 +184,7 @@ app.get('/admin/orders', async function(req,res){
 
   console.log('DATA:', data);
 
-  res.render('orders.ejs', {data:data});
+  res.render('appointments.ejs', {data:data});
   
 });
 
@@ -1384,6 +1388,7 @@ const showLoyalty = (sender_psid) => {
                 {
                   "type": "postback",
                   "title": "Sign up",
+
                   "payload": "signup",
                 },           
               ],
