@@ -152,6 +152,9 @@ app.get('/test',function(req,res){
 app.get('/test1',function(req,res){    
     res.render('test1.ejs');
 });
+app.get('/register',function(req,res){    
+    res.render('register.ejs');
+});
 
 app.post('/test',function(req,res){
     const sender_psid = req.body.sender_id;     
