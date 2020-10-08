@@ -165,25 +165,18 @@ app.post('/register',function(req,res){
       let sender = req.body.sender;  
       
       console.log("ABC");
-        db.collection('register').add({
-
+        db.collection('register').add(data).then((success)=>{
+          console.log('DATA SAVED',success);
         name: name,
         email: email,
         password: password,
-    }).then(success => {   
-          console.log("DATA SAVED")
-      }).catch(error => {
-          console.log(error);
+    }).catch(error => {
+          console.log('Error',error);
       }); 
      
            
 });
 
-app.post('/test',function(req,res){
-    const sender_psid = req.body.sender_id;     
-    let response = {"text": "You  click delete button"};
-    callSend(sender_psid, response);
-});
 
 /*********************************************
 Admin Check Order
