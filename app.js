@@ -162,12 +162,14 @@ app.post('/login', async function(req,res){
       let email = req.body.email;
       let phone = req.body.phone;
       let sender = req.body.sender; 
-      
+
       console.log("Data put");
     const userRef = db.collection('register').doc();
     const user = await userRef.get();
     if (!user.exists){
       console.log('TEXT:','you are not member');
+      let message = new TextMessage(`Click on following link to register`);   
+        response.send(message);
     } else {
       console.log('Document data:', user.data());
 
