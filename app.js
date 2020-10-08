@@ -161,7 +161,16 @@ app.post('/login',function(req,res){
       let email = req.body.email;
       let phone = req.body.phone;
       let sender = req.body.sender; 
-      console.log("ABCDEF");
+      console.log("Data put");
+    const userRef = db.collection('register').doc(phone);
+    const user = await userRef.get();
+    if (!user.exists){
+      console.log('TEXT:','you are not member');
+    } else {
+      console.log('Document data:', user.data());
+      current_user.data = user.data().phone;
+
+    }
 
 });
 app.post('/register',function(req,res){
@@ -1436,7 +1445,7 @@ const showLoyalty = (sender_psid) => {
         });
       });
 }
-
+/*
 const registerUser = async (message, response) => {
   const userRef = db.collection('register').doc(phone);
     const user = await userRef.get();
@@ -1448,6 +1457,7 @@ const registerUser = async (message, response) => {
 
     }
 }
+*/
 /**************
 end loyalty
 **************/
