@@ -157,6 +157,9 @@ app.get('/register/:sender_id',function(req,res){
     const sender_id = req.params.sender_id;   
     res.render('register.ejs',{title:"register user", sender_id:sender_id});
 });
+
+
+///////////FOR LOGIN ERROR\\\\\\\\\\\\\\\\
 app.post('/login', async function(req,res){
       let name  = req.body.name;
       let email = req.body.email;
@@ -168,14 +171,14 @@ app.post('/login', async function(req,res){
     const user = await userRef.get();
     if (!user.exists){
       console.log('TEXT:','you are not member');
-      let response = {"text": summery};
-      callSend(response);
+      
     } else {
       console.log('Document data:', user.data());
 
     }
 
 });
+
 app.post('/register',function(req,res){
        
       let name  = req.body.name;
