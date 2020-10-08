@@ -157,7 +157,7 @@ app.get('/register/:sender_id',function(req,res){
     res.render('register.ejs',{title:"register user", sender_id:sender_id});
 });
 
-app.post('/register/:sender_id',function(req,res){
+app.post('/register',function(req,res){
        
       let name  = req.body.name;
       let email = req.body.email;
