@@ -165,20 +165,17 @@ app.post('/register/:sender_id',function(req,res){
       let sender = req.body.sender;  
 
       console.log("REQ FILE:",req.file);
-
-      let file = req.file;
-      if (file) {        
-            db.collection('registers').add({
-              name: name,
-              email: email,
-              password: password,
-              }).then(success => {   
-                console.log("DATA SAVED")
-                   
-              }).catch(error => {
-                console.log(error);
-              });
-      }
+        db.collection("registers").add({
+        name: name,
+        email: email,
+        password: password,
+    })
+      .then(function(docRef) {
+          console.log("Document written with ID: ", docRef.id);
+      })
+      .catch(function(error) {
+      console.error("Error adding document: ", error);
+  });
      
            
 });
