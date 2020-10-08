@@ -166,7 +166,7 @@ app.post('/login', async function(req,res){
       let phone = req.body.phone;
       let sender = req.body.sender; 
 
-      console.log("Data put");
+    console.log("Data put");
     const userRef = db.collection('register').doc();
     const user = await userRef.get();
     if (!user.exists){
