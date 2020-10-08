@@ -166,9 +166,10 @@ app.post('/register',function(req,res){
       
       console.log("ABC");
         db.collection('register').add({
+
         name: name,
         email: email,
-        password: password
+        password: password,
     }).then(success => {   
           console.log("DATA SAVED")
       }).catch(error => {
