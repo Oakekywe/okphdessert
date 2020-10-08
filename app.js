@@ -167,19 +167,16 @@ app.post('/register/:sender_id',function(req,res){
         db.collection("registers").add({
         name: name,
         email: email,
-        password: password,
-    })
-      .then(function(docRef) {
-          console.log("Document written with ID: ", docRef.id);
+        password: password
+    }).then(success => {   
+                console.log("DATA SAVED")
           thankyouReply(sender, name);
-      })
-      .catch(function(error) {
-      console.error("Error adding document: ", error);
-  });
+      }).catch(error => {
+          console.log(error);
+      }); 
      
            
 });
-
 
 
 app.post('/test',function(req,res){
@@ -395,8 +392,6 @@ app.post('/webview',upload.single('file'),function(req,res){
       let sender = req.body.sender;  
 
       console.log("REQ FILE:",req.file);
-
-
 
       let file = req.file;
       if (file) {
