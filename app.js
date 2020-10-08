@@ -158,9 +158,11 @@ app.get('/register/:sender_id',function(req,res){
     res.render('register.ejs',{title:"register user", sender_id:sender_id});
 });
 app.post('/login', async function(req,res){
+      let name  = req.body.name;
       let email = req.body.email;
       let phone = req.body.phone;
       let sender = req.body.sender; 
+      
       console.log("Data put");
     const userRef = db.collection('register').doc();
     const user = await userRef.get();
