@@ -164,7 +164,8 @@ app.post('/register',function(req,res){
       let password = req.body.password;
       let sender = req.body.sender;  
       
-        db.collection('registers').add({
+      console.log("ABC");
+        db.collection('register').add({
         name: name,
         email: email,
         password: password
@@ -176,7 +177,6 @@ app.post('/register',function(req,res){
      
            
 });
-
 
 app.post('/test',function(req,res){
     const sender_psid = req.body.sender_id;     
