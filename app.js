@@ -42,6 +42,7 @@ const questions = {
   "q5": "Anything to say?"
 }
 
+let current_user = {};
 
 let current_question = '';
 
@@ -1430,6 +1431,17 @@ const showLoyalty = (sender_psid) => {
       });
 }
 
+const registerUser = async (message, response) => {
+  const userRef = db.collection('register').doc(phone);
+    const user = await userRef.get();
+    if (!user.exists){
+      console.log('TEXT:','you are not member');
+    } else {
+      console.log('Document data:', user.data());
+      current_user.data = user.data().phone;
+
+    }
+}
 /**************
 end loyalty
 **************/
