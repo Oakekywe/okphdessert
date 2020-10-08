@@ -171,7 +171,7 @@ app.post('/register',function(req,res){
         phone: phone
     }).then(success => {   
           console.log("DATA SAVED")
-          thankyouReply(sender, name);
+          Thankyou(sender, name);
       }).catch(error => {
           console.log(error);
       }); 
@@ -1512,7 +1512,10 @@ const showButtonReplyNo =(sender_psid) => {
   let response = { "text": "You clicked NO" };
   callSend(sender_psid, response);
 }
-
+const Thankyou =(sender_psid) => {
+  let response = { "text": "Thank you for sign up" };
+  callSend(sender_psid, response);
+}
 const thankyouReply =(sender_psid, name, img_url) => {
   let response = {
       "attachment": {
