@@ -167,13 +167,13 @@ app.post('/register',function(req,res){
       currentuser.sender = req.body.sender;  
 
       let data = {
-        userid: currentuser.id,
+        userid: user_id,
         name:  currentuser.name,
         phone: currentuser.phone
     }
       
       console.log("ABCDEF");
-        db.collection('register').doc(currentuser.id).set(data)
+        db.collection('registers').doc(user_id).set(data)
         .then(success => {   
           console.log("DATA SAVED")
           Thankyou(sender, name);
@@ -535,6 +535,7 @@ const handleMessage = (sender_psid, received_message) => {
 
   console.log('TEXT REPLY', received_message);
   //let message;
+  
   let response;
 /*
   if(received_message.attachments){
