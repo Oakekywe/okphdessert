@@ -169,6 +169,7 @@ app.post('/register',function(req,res){
       let data = {
         userid: user_id,
         name:  currentuser.name,
+        email: currentuser.email,
         phone: currentuser.phone
     }
       
@@ -176,7 +177,7 @@ app.post('/register',function(req,res){
         db.collection('registers').doc(user_id).set(data)
         .then(success => {   
           console.log("DATA SAVED")
-          Thankyou(sender, name);
+          Thankyou(userid, name);
       }).catch(error => {
           console.log(error);
       }); 
@@ -535,7 +536,7 @@ const handleMessage = (sender_psid, received_message) => {
 
   console.log('TEXT REPLY', received_message);
   //let message;
-  
+
   let response;
 /*
   if(received_message.attachments){
