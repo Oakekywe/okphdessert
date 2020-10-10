@@ -177,7 +177,7 @@ app.post('/register',function(req,res){
         db.collection('registers').doc(user_id).set(data)
         .then(success => {   
           console.log("DATA SAVED")
-          Thankyou(currentuser.sender,currentuser.name);
+          Thankyou(currentuser.sender);
       }).catch(error => {
           console.log(error);
       }); 
