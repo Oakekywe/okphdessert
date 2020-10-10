@@ -159,39 +159,22 @@ app.get('/register/:sender_id',function(req,res){
 });
 
 
-///////////FOR LOGIN ERROR\\\\\\\\\\\\\\\\
-app.post('/login', async function(req,res){
-      let name  = req.body.name;
-      let email = req.body.email;
-      let phone = req.body.phone;
-      let sender = req.body.sender; 
-
-    console.log("Data put");
-    const userRef = db.collection('register').doc();
-    const user = await userRef.get();
-    if (!user.exists){
-      console.log('TEXT:','you are not member');
-      
-    } else {
-      console.log('Document data:', user.data());
-
-    }
-
-});
-
 app.post('/register',function(req,res){
        
-      let name  = req.body.name;
-      let email = req.body.email;
-      let phone = req.body.phone;
-      let sender = req.body.sender;  
+      currentuser.name  = req.body.name;
+      currentuser.email = req.body.email;
+      currentuser.phone = req.body.phone;
+      currentuser.sender = req.body.sender;  
+
+      let data = {
+        userid: currentuser.id,
+        name:  currentuser.name,
+        phone: currentuser.phone
+    }
       
       console.log("ABCDEF");
-        db.collection('register').add({
-        name: name,
-        email: email,
-        phone: phone
-    }).then(success => {   
+        db.collection('register').doc(currentuser.id).set(data)
+        .then(success => {   
           console.log("DATA SAVED")
           Thankyou(sender, name);
       }).catch(error => {
@@ -1453,17 +1436,23 @@ const showLoyalty = (sender_psid) => {
 }
 /*
 const registerUser = async (message, response) => {
-  const userRef = db.collection('register').doc(phone);
-    const user = await userRef.get();
-    if (!user.exists){
-      console.log('TEXT:','you are not member');
-    } else {
-      console.log('Document data:', user.data());
-      current_user.data = user.data().phone;
 
-    }
-}
-*/
+    const userRef = db.collection('users').doc(currentUser.id);
+    const user = await userRef.get();
+    if (!user.exists) {
+        console.log('No such document!');
+        let bot_message1 = new TextMessage(`Click on following link to register`); 
+        let bot_message2 = new UrlMessage(APP_URL + '/register/');   
+        response.send(bot_message1).then(()=>{
+            return response.send(bot_message2);
+        });
+    } else {
+      console.log('Document data:', user.data());      
+
+      let bot_message3 = new TextMessage(`You are already registered`, actionKeyboard);    
+      response.send(bot_message3);
+    }    
+}*/
 /**************
 end loyalty
 **************/
