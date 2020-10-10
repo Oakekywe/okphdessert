@@ -42,7 +42,7 @@ const questions = {
   "q5": "Anything to say?"
 }
 
-let current_user = {};
+let currentuser = {};
 
 let current_question = '';
 
