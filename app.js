@@ -1461,10 +1461,24 @@ const registerUser = async (message, response) => {
 end loyalty
 **************/
 
-const checkorder =(sender_psid) => {
+const checkorder = async (sender_psid) => {
   let response = {"text": "Enter your reference code"};
+  const reference = db.collection('orders').where("ref", "==", true)
+  const reference = await reference.get();
+  if (!reference.exists) {
+        console.log('No such document!');
+             
+       
+    } else {
+      console.log('Document data:', member.data());    
+
+    }    
+
+
   callSend(sender_psid, response);
 }
+
+    
 const hiReply =(sender_psid) => {
   let response = {"text": "You sent hi message"};
   callSend(sender_psid, response);
