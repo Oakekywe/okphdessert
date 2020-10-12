@@ -216,7 +216,7 @@ app.get('/admin/orders', async function(req,res){
 
   console.log('DATA:', data);
 
-  res.render('appointments.ejs', {data:data});
+  res.render('orders.ejs', {data:data});
   
 });
 
