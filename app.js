@@ -1464,8 +1464,8 @@ end loyalty
 const checkorder = async (sender_psid) => {
   let response = {"text": "Enter your reference code"};
   const reference = db.collection('orders').where("ref", "==", true)
-  const reference = await reference.get();
-  if (!reference.exists) {
+  const reference1 = await reference.get();
+  if (!reference1.exists) {
         console.log('No such document!');
              
        
