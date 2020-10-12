@@ -639,7 +639,10 @@ const handleMessage = (sender_psid, received_message) => {
         break;       
       case "show images":
         showImages(sender_psid)
-        break;               
+        break;   
+       case "check order":
+        checkorder(sender_psid)
+        break;              
       default:
           defaultReply(sender_psid);
       }       
@@ -1295,8 +1298,7 @@ console.log('ORDER INFO', userInputs);
   abc += "phone:" + userInputs[user_id].phone + "\u000A";
   abc += "email:" + userInputs[user_id].email + "\u000A";
   abc += "message:" + userInputs[user_id].message + "\u000A";
-  abc += "pickup:" + userInputs[user_id].pickup + "\u000A";
-  abc += "delivery:" + userInputs[user_id].delivery + "\u000A";  
+  abc += "pickup:" + userInputs[user_id].pickup + "\u000A"; 
 
   let response1 = {"text": abc};
 
@@ -1459,6 +1461,10 @@ const registerUser = async (message, response) => {
 end loyalty
 **************/
 
+const checkorder =(sender_psid) => {
+  let response = {"text": "Enter your reference code"};
+  callSend(sender_psid, response);
+}
 const hiReply =(sender_psid) => {
   let response = {"text": "You sent hi message"};
   callSend(sender_psid, response);
