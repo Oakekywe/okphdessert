@@ -202,7 +202,7 @@ app.post('/loginform',async function(req,res){
         phone: currentuser.password
     }
       
-    const adminsRef = db.collection('admins').doc(data).limit(1);
+    const adminsRef = db.collection('admins').limit(1);
     const snapshot = await adminsRef.get();
 
     
