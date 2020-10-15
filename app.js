@@ -192,7 +192,8 @@ app.get('/loginform/:sender_id',function(req,res){
 
 app.post('/loginform',async function(sender_psid,req,res){
        
-      let password = req.body.password;
+      let password =''; 
+      password = req.body.password;
       
       
       
