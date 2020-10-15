@@ -190,7 +190,7 @@ app.get('/loginform/:sender_id',function(req,res){
     res.render('loginform.ejs',{title:"Login user", sender_id:sender_id});
 });
 
-app.post('/loginform',async function(sender_psid, req,res){
+app.post('/loginform',async function(sender_psid,req,res){
        
       
       currentuser.email = req.body.email;
@@ -199,10 +199,10 @@ app.post('/loginform',async function(sender_psid, req,res){
 
       let data = {
         email: currentuser.email,
-        phone: currentuser.password
+        password: currentuser.password
     }
       
-    const adminsRef = db.collection('admins').limit(1);
+    const adminsRef = db.collection('admins').where("password", "==", password).limit(1);
     const snapshot = await adminsRef.get();
 
     
@@ -215,7 +215,7 @@ app.post('/loginform',async function(sender_psid, req,res){
       let response = { "text": "Incorrect order number" };
       callSend(sender_psid, response).then(()=>{
           return abcde(sender_psid);
-        });
+        }
 
     }  
       
@@ -223,7 +223,12 @@ app.post('/loginform',async function(sender_psid, req,res){
            
 });
 
+const showOrder = async(sender_psid, order_ref) => {
 
+  
+ 
+
+}
 
 const abcde = (sender_psid) => {
 let response = {"Text": "correct!"};
