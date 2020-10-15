@@ -192,16 +192,11 @@ app.get('/loginform/:sender_id',function(req,res){
 
 app.post('/loginform',async function(sender_psid,req,res){
        
+      let password = req.body.password;
       
       
-      currentuser.password = req.body.password;
-      currentuser.sender = req.body.sender;  
-
-      let data = {
-       password: currentuser.password
-    }
       
-    const adminsRef = db.collection('admins').doc(req.body.doc_id).where("password", "==", data.password).limit(1);
+    const adminsRef = db.collection('admins').doc(req.body.doc_id).where("password", "==", password).limit(1);
     const snapshot = await adminsRef.get();
 
     
