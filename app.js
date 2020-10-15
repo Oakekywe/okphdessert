@@ -223,12 +223,6 @@ app.post('/loginform',async function(sender_psid,req,res){
            
 });
 
-const showOrder = async(sender_psid, order_ref) => {
-
-  
- 
-
-}
 
 const abcde = (sender_psid) => {
 let response = {"Text": "correct!"};
