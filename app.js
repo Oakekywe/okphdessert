@@ -194,7 +194,7 @@ app.post('/loginform',async function(sender_psid,req,res){
        
       let password =''; 
       password = req.body.password;
-      console.log('ABC:' password);
+      console.log('ABC:', password);
       
       
       
