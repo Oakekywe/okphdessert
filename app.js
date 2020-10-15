@@ -185,6 +185,51 @@ app.post('/register',function(req,res){
            
 });
 
+app.get('/loginform/:sender_id',function(req,res){
+    const sender_id = req.params.sender_id;
+    res.render('loginform.ejs',{title:"Login user", sender_id:sender_id});
+});
+
+app.post('/loginform',async function(req,res){
+       
+      
+      currentuser.email = req.body.email;
+      currentuser.password = req.body.password;
+      currentuser.sender = req.body.sender;  
+
+      let data = {
+        email: currentuser.email,
+        phone: currentuser.password
+    }
+      
+    const adminsRef = db.collection('admins').doc(data).limit(1);
+    const snapshot = await adminsRef.get();
+
+    
+    if (snapshot.empty) {
+      let response = { "text": "Incorrect order number" };
+      callSend(sender_psid, response).then(()=>{
+        res.render('loginform.ejs');
+      });
+    }else{
+      let response = { "text": "Incorrect order number" };
+      callSend(sender_psid, response).then(()=>{
+          return abcde(sender_psid);
+        }
+
+    }  
+      
+     
+           
+});
+
+
+
+const abcde = (sender_psid) => {
+let response = {"Text": "correct!"};
+callSend(sender_psid, response);
+}
+
 app.post('/test',function(req,res){
     const sender_psid = req.body.sender_id;     
     let response = {"text": "You  click delete button"};
